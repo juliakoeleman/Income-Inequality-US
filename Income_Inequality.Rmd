@@ -49,8 +49,8 @@ https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states
 URL VAN DATA SETS:
 
 ```{r loading data}
-EducationLevelData <- read.csv2("Data Inkomen.csv")
-IncomeData <- read.csv2("Data Opleidingsniveau.csv")
+EducationLevelData <- read.csv2("data/Frank_WID_2020.csv")
+IncomeData <- read.csv2("data/t")
 ```
 
 ##2.2 Provide a short summary of the datasets
