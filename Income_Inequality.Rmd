@@ -55,3 +55,17 @@ head ()
 
 ##2.3 
 jveyidiwquvdo
+library(readxl)
+tabn012_csv <- read_excel("Downloads/tabn012.csv.xlsx", 
+    col_types = c("text", "skip", "text", 
+        "skip", "skip", "skip", "skip", "skip", 
+        "skip", "skip", "skip", "skip", "skip", 
+        "skip", "text", "skip", "skip", "skip", 
+        "skip", "skip", "skip", "skip", "skip", 
+        "skip", "skip", "skip", "text", "skip", 
+        "skip", "skip", "skip", "skip", "skip", 
+        "skip", "skip", "skip", "skip", "skip", 
+        "text", "skip", "skip", "skip", "skip", 
+        "skip", "skip", "skip", "skip", "skip", 
+        "skip"))
+View(tabn012_csv)
