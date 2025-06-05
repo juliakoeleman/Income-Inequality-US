@@ -30,7 +30,7 @@ packageVersion("dplyr")
 ```
 
 #Title Page
-Carlijn Calori, Leah Delikát, Sten Groen, Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
+Carlijn Calori, Leah Delikát, Fadhil Dhafir Sten Groen, Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
 Tutorial Group 1
 J.F. Fitzgerald
 
