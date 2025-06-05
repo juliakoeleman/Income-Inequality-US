@@ -50,7 +50,7 @@ URL VAN DATA SETS:
 
 ```{r loading data}
 EducationLevelData <- read.csv2("data/Frank_WID_2020.csv")
-IncomeData <- read.csv2("data/t")
+IncomeData <- read.csv2("data/tabn012.csv")
 ```
 
 ##2.2 Provide a short summary of the datasets
