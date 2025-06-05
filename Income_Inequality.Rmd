@@ -7,6 +7,10 @@ output: pdf_document
 ---
 
 #Set up your environment
+```{r}
+setwd("~/")
+```
+
 ```{r packages_install, include = FALSE}
 install.packages("tidyverse")
 install.packages("renv")
@@ -43,8 +47,8 @@ https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states
 
 ##2.1 Load in Data
 ```{r loading data}
-EducationLevelData <- read.csv2("Data Inkomen.csv")
-IncomeData <- read.csv2("Data Opleidingsniveau.csv")
+EducationLevelData <- read.csv2("tabn012.csv")
+IncomeData <- read.csv2("FRANK_WID_2020.csv")
 ```
 
 ##2.2 Provide a short summary of the datasets
@@ -56,4 +60,3 @@ head ()
 
 ##2.3 
 
-12345678910
