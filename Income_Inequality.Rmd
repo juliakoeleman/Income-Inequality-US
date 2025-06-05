@@ -24,6 +24,7 @@ packageVersion("tidyverse")
 packageVersion("renv")
 packageVersion("dplyr")
 ```
+
 #Title Page
 Carlijn Calori, Leah Delikát, Sten Groen, Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
 Tutorial Group 1
@@ -54,3 +55,5 @@ head ()
 ```
 
 ##2.3 
+
+12345678910
