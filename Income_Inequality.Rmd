@@ -7,6 +7,10 @@ output: pdf_document
 ---
 
 #Set up your environment
+```{r}
+setwd("~/")
+```
+
 ```{r packages_install, include = FALSE}
 install.packages("tidyverse")
 install.packages("renv")
@@ -24,6 +28,7 @@ packageVersion("tidyverse")
 packageVersion("renv")
 packageVersion("dplyr")
 ```
+
 #Title Page
 Carlijn Calori, Leah Delikát, Sten Groen, Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
 Tutorial Group 1
@@ -41,9 +46,11 @@ https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states
 #Part 2 - Data Sourcing
 
 ##2.1 Load in Data
+URL VAN DATA SETS:
+
 ```{r loading data}
-EducationLevelData <- read.csv2("Data Inkomen.csv")
-IncomeData <- read.csv2("Data Opleidingsniveau.csv")
+EducationLevelData <- read.csv2("data/Frank_WID_2020.csv")
+IncomeData <- read.csv2("data/tabn012.csv")
 ```
 
 ##2.2 Provide a short summary of the datasets
