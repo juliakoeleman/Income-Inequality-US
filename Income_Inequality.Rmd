@@ -1,0 +1,56 @@
+
+---
+title: "The Effect of Education Level on Income Inequality"
+authors: "Names + Studentnumbers"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+#Set up your environment
+```{r packages_install, include = FALSE}
+install.packages("tidyverse")
+install.packages("renv")
+install.packages("dplyr")
+```
+
+```{r}
+library(tidyverse)
+library(renv)
+library(dplyr)
+```
+
+```{r}
+packageVersion("tidyverse")
+packageVersion("renv")
+packageVersion("dplyr")
+```
+#Title Page
+Carlijn Calori, Leah Delikát, Sten Groen, Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
+Tutorial Group 1
+J.F. Fitzgerald
+
+#Part 1 - Identification of the Social Problem
+
+##1.1 Describe the Social Problem
+Income inequality in the USA is a social problem because it limits equal opportunities, increases social tensions, and harms health and democracy.The Pew Research Center warns that the middle class is shrinking rapidly, while the rich grow richer.In addition, The OECD ranks the U.S. among the most unequal developed nations. These two studies emphasize the importance of this problem ABCDEF 
+
+
+https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/?
+https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html
+
+#Part 2 - Data Sourcing
+
+##2.1 Load in Data
+```{r loading data}
+EducationLevelData <- read.csv2("Data Inkomen.csv")
+IncomeData <- read.csv2("Data Opleidingsniveau.csv")
+```
+
+##2.2 Provide a short summary of the datasets
+
+```{r}
+head ()
+
+```
+
+##2.3 
