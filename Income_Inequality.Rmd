@@ -42,7 +42,7 @@ https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states
 
 ##2.1 Load in Data
 ```{r loading data}
-EducationLevelData <- read.csv2("Data Inkomen.csv")
+EducationLevelData <- read.csv2("Data Ink)
 IncomeData <- read.csv2("Data Opleidingsniveau.csv")
 ```
 
