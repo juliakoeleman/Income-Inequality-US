@@ -48,10 +48,6 @@ https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states
 ##2.1 Load in Data
 URL VAN DATA SETS:
 
-```{r}
-
-
-```
 
 ```{r loading data}
 
