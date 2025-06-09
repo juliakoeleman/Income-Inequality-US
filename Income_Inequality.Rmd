@@ -82,20 +82,9 @@ names(Education)[1:5] <- c("State", "Highschool1990", "Highschool2000", "Bachelo
 
 Reshape the Education dataset
 ```{r}
+df1990 <- data.frame(State = Education$State, Year = 1990, Highschool = Education$Highschool1990, Bachelor = Education$Bachelor1990, stringsAsFactors = FALSE)
 
-df1990 <- data.frame(
-  State = Education$State,
-  Year = 1990,
-  Highschool = Education$Highschool1990,
-  Bachelor = Education$Bachelor1990,
-  stringsAsFactors = FALSE)
-
-df2000 <- data.frame(
-  State = Education$State,
-  Year = 2000,
-  Highschool = Education$Highschool2000,
-  Bachelor = Education$Bachelor2000,
-  stringsAsFactors = FALSE)
+df2000 <- data.frame(State = Education$State,Year = 2000,Highschool = Education$Highschool2000,Bachelor = Education$Bachelor2000,stringsAsFactors = FALSE)
 
 Education <- rbind(df1990, df2000)
 
@@ -129,7 +118,7 @@ Allmerged <- Allmerged %>%
   relocate(State_ID, .after = Year) %>%
   mutate(across(3:16, ~ round(.x, 2)))
 
-#North Carolina has state_ID 33 for 1990, and 33 + 50 (number of states) = 83 for 2000 and Nevada for example 28 for 1990 and 28 + 50 = 78 for 2000. Idk if this form of identification makes sense, but i think it does
+#North Carolina has state_ID 33 for 1990, and 33 + 50 (number of states) = 83 for 2000 and Nevada for example 28 for 1990 and 28 + 50 = 78 for 2000. Idk if this form of identification makes sense, but i think so
 
 ```
 
