@@ -80,7 +80,7 @@ Education <- Education[ -c(1:13, 14, 20, 24, 26, 32, 38, 44, 50, 56, 62, 68, 75:
 names(Education)[1:5] <- c("State", "Highschool1990", "Highschool2000", "Bachelor1990", "Bachelor2000")
 ```
 
-Reshape the Education dataset
+Reshape the Education dataset to the same form as the others so you have a variable Year, and for every state a row in 1990 and 2000
 ```{r}
 df1990 <- data.frame(State = Education$State, Year = 1990, Highschool = Education$Highschool1990, Bachelor = Education$Bachelor1990, stringsAsFactors = FALSE)
 
