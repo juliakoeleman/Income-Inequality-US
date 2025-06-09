@@ -49,9 +49,8 @@ https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states
 URL VAN DATA SETS:
 
 ```{r loading data}
-IncomeData <- read.csv2("data/Frank_WID_2020.csv")
-EducationLevelData <- read.csv2("data/tabn012.csv")
-EarningData <- read.csv2("data/tabn012_howmuchearn.csv")
+Distribution <- read_excel("Frank_WID_2020.xls", sheet = 3)
+
 ```
 
 
