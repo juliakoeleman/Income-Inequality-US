@@ -49,7 +49,7 @@ https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states
 URL VAN DATA SETS:
 
 ```{r loading data}
-Distribution <- read_excel("Frank_WID_2020.xls", sheet = 3)
+
 
 ```
 
