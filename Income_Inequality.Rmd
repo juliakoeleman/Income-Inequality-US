@@ -60,12 +60,6 @@ Education <- read_excel("data/tabn012.xls", col_types = c("text", "skip", "text"
 
 ```
 
-##2.2 Short summary of data sets
-```{r}
-head (Distribution)
-```
-In this data set 
-
 #Clean the data sets
 ```{r}
 
@@ -126,18 +120,19 @@ Allmerged <- Allmerged %>%
 
 ```
 
-
-##2.2 Provide a short summary of the datasets
 ```{r}
-
+head(Allmerged)
 ```
+This is our merged data set. In the first column you can see what year the data refers to. Next to it is the column with the State_ID. We put the states in alphabetical order and then started numbering from 1 to 100 (example: Alabama is numbered 1 in 1990 and 51 (1+50) in 2000). 
+
+The next 5 columns show the percentages of total income that a group earns. For example, the first column shows that the top 10 percent of big earners, earn 39.9% of total income, from the state. This is the same for the 4 other columns, but here the groups get smaller and smaller. 
+
+Columns 9 through 14 show how much you have to earn to belong to that percentage of big earners. For example, in 1990 you had to earn more than $101,762.24 to be among the top 10 big earners in Alabama. Did you want to be among the top 5 in 1990? Then you had to earn more than $131,506.30. 
+
+The last two columns show level of education. These variables are in percent. So for example, in 1990, 66.9% of the population in Alabama had a high school diploma or higher and 15.7% had a bachelor's degree or higher. 
+
 
 <<<<<<< HEAD
-##2.3 
-``` {r}
-
-``` 
-
 #Part 3 - Quantifying 
 
 ##3.1 Generating necessary variable
