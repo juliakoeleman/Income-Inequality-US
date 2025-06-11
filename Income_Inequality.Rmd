@@ -131,3 +131,37 @@ Columns 9 through 14 show how much you have to earn to belong to that percentage
 
 The last two columns show level of education. These variables are in percent. So for example, in 1990, 66.9% of the population in Alabama had a high school diploma or higher and 15.7% had a bachelor's degree or higher. 
 
+<<<<<<< HEAD
+##2.3 
+``` {r}
+
+``` 
+
+#Part 3 - Quantifying 
+
+##3.1 Generating necessary variable
+
+To measure inequality: top 10% divided by bottom 90%.Not an ideal measuring, but we don't have more data on the distribution if income.
+
+```{r}
+Allmerged <- Allmerged %>%
+  mutate(Top10_vs_bottom90 = round(Top10_adj/(100-Top10_adj), 2))
+
+```
+
+```{r}
+Allmerged <- Allmerged %>%
+  mutate(diff_y99_y90 = round(((y99 - y90)/ y90)*100 ,2))
+
+Allmerged <- Allmerged %>%
+  mutate(diff_y9999_y999 = round(((y9999 - y999)/ y999)*100 ,2))
+
+```
+
+
+
+
+
+
+
+
