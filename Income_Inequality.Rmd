@@ -37,7 +37,7 @@ J.F. Fitzgerald
 #Part 1 - Identification of the Social Problem
 
 ##1.1 Describe the Social Problem
-Income inequality in the USA is a social problem because it limits equal opportunities, increases social tensions, and harms health and democracy.The Pew Research Center warns that the middle class is shrinking rapidly, while the rich grow richer.In addition, The OECD ranks the U.S. among the most unequal developed nations. These two studies emphasize the importance of this problem ABCDEF 
+Income inequality in the USA is a social problem because it limits equal opportunities, increases social tensions, and harms health and democracy.The Pew Research Center warns that the middle class is shrinking rapidly, while the rich grow richer.In addition, The OECD ranks the U.S. among the most unequal developed nations. These two studies emphasize the importance of this problem ABCDEF. 
 
 
 https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/?
@@ -46,8 +46,6 @@ https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states
 #Part 2 - Data Sourcing
 
 ##2.1 Load in Data
-URL VAN DATA SETS:
-
 
 ```{r loading data}
 library(readxl)
@@ -62,7 +60,13 @@ Education <- read_excel("data/tabn012.xls", col_types = c("text", "skip", "text"
 
 ```
 
-Clean the datasets
+##2.2 Short summary of data sets
+```{r}
+head (Distribution)
+```
+In this data set 
+
+#Clean the data sets
 ```{r}
 
 Distribution <- Distribution %>%
@@ -80,7 +84,7 @@ Education <- Education[ -c(1:13, 14, 20, 24, 26, 32, 38, 44, 50, 56, 62, 68, 75:
 names(Education)[1:5] <- c("State", "Highschool1990", "Highschool2000", "Bachelor1990", "Bachelor2000")
 ```
 
-Reshape the Education dataset to the same form as the others so you have a variable Year, and for every state a row in 1990 and 2000
+#Reshape the Education dataset to the same form as the others so you have a variable Year, and for every state a row in 1990 and 2000
 ```{r}
 df1990 <- data.frame(State = Education$State, Year = 1990, Highschool = Education$Highschool1990, Bachelor = Education$Bachelor1990, stringsAsFactors = FALSE)
 
@@ -88,7 +92,7 @@ df2000 <- data.frame(State = Education$State,Year = 2000,Highschool = Education$
 
 Education <- rbind(df1990, df2000)
 
-Education <- Education1 %>%
+Education <- Education %>%
   arrange(Year, State) %>%
   mutate(State_ID = 1:100) %>%
   mutate(across(3:4, ~ as.numeric(.)))
@@ -107,7 +111,7 @@ Education <- Education %>%
     Year = as.numeric(Year))
 ```
 
-To merge the datasets:
+#To merge the datasets:
 ```{r}
 Allmerged <- Distribution %>%
   inner_join(Tresholds, by = c("State_ID", "Year")) %>%
@@ -124,12 +128,11 @@ Allmerged <- Allmerged %>%
 
 
 ##2.2 Provide a short summary of the datasets
-
 ```{r}
-head ()
 
 ```
 
+<<<<<<< HEAD
 ##2.3 
 ``` {r}
 
@@ -155,6 +158,7 @@ Allmerged <- Allmerged %>%
   mutate(diff_y9999_y999 = round(((y9999 - y999)/ y999)*100 ,2))
 
 ```
+
 
 
 
