@@ -1,12 +1,15 @@
-
 ---
 title: "The Effect of Education Level on Income Inequality"
 authors: "Names + Studentnumbers"
 date: "`r Sys.Date()`"
 output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 #Set up your environment
+
 ```{r}
 setwd("~/")
 ```
@@ -29,19 +32,22 @@ packageVersion("renv")
 packageVersion("dplyr")
 ```
 
-#Title Page
-Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen, Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
-Tutorial Group 1
-J.F. Fitzgerald
+#Title Page Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen,
+Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
+Tutorial Group 1 J.F. Fitzgerald
 
 #Part 1 - Identification of the Social Problem
 
-##1.1 Describe the Social Problem
-Income inequality in the USA is a social problem because it limits equal opportunities, increases social tensions, and harms health and democracy.The Pew Research Center warns that the middle class is shrinking rapidly, while the rich grow richer.In addition, The OECD ranks the U.S. among the most unequal developed nations. These two studies emphasize the importance of this problem ABCDEF. 
+##1.1 Describe the Social Problem Income inequality in the USA is a
+social problem because it limits equal opportunities, increases social
+tensions, and harms health and democracy.The Pew Research Center warns
+that the middle class is shrinking rapidly, while the rich grow
+richer.In addition, The OECD ranks the U.S. among the most unequal
+developed nations. These two studies emphasize the importance of this
+problem ABCDEF.
 
-
-https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/?
-https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html
+<https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/>?
+<https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html>
 
 #Part 2 - Data Sourcing
 
@@ -61,12 +67,15 @@ Education <- read_excel("data/tabn012.xls", col_types = c("text", "skip", "text"
 ```
 
 ##2.2 Short summary of data sets
+
 ```{r}
 head (Distribution)
 ```
-In this data set 
+
+In this data set
 
 #Clean the data sets
+
 ```{r}
 
 Distribution <- Distribution %>%
@@ -84,7 +93,9 @@ Education <- Education[ -c(1:13, 14, 20, 24, 26, 32, 38, 44, 50, 56, 62, 68, 75:
 names(Education)[1:5] <- c("State", "Highschool1990", "Highschool2000", "Bachelor1990", "Bachelor2000")
 ```
 
-#Reshape the Education dataset to the same form as the others so you have a variable Year, and for every state a row in 1990 and 2000
+#Reshape the Education dataset to the same form as the others so you
+have a variable Year, and for every state a row in 1990 and 2000
+
 ```{r}
 df1990 <- data.frame(State = Education$State, Year = 1990, Highschool = Education$Highschool1990, Bachelor = Education$Bachelor1990, stringsAsFactors = FALSE)
 
@@ -112,6 +123,7 @@ Education <- Education %>%
 ```
 
 #To merge the datasets:
+
 ```{r}
 Allmerged <- Distribution %>%
   inner_join(Tresholds, by = c("State_ID", "Year")) %>%
@@ -126,23 +138,24 @@ Allmerged <- Allmerged %>%
 
 ```
 
-
 ##2.2 Provide a short summary of the datasets
+
 ```{r}
 
 ```
 
-<<<<<<< HEAD
-##2.3 
-``` {r}
+\<\<\<\<\<\<\< HEAD ##2.3
 
-``` 
+```{r}
 
-#Part 3 - Quantifying 
+```
+
+#Part 3 - Quantifying
 
 ##3.1 Generating necessary variable
 
-To measure inequality: top 10% divided by bottom 90%.Not an ideal measuring, but we don't have more data on the distribution if income.
+To measure inequality: top 10% divided by bottom 90%. Not an ideal
+measuring, but we don't have more data on the distribution of income.
 
 ```{r}
 Allmerged <- Allmerged %>%
@@ -158,11 +171,3 @@ Allmerged <- Allmerged %>%
   mutate(diff_y9999_y999 = round(((y9999 - y999)/ y999)*100 ,2))
 
 ```
-
-
-
-
-
-
-
-
