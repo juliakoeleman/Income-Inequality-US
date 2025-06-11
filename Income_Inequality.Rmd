@@ -142,7 +142,6 @@ To measure inequality: top 10% divided by bottom 90%.Not an ideal measuring, but
 ```{r}
 Allmerged <- Allmerged %>%
   mutate(Top10_vs_bottom90 = round(Top10_adj/(100-Top10_adj), 2))
-
 ```
 
 ```{r}
@@ -154,6 +153,9 @@ Allmerged <- Allmerged %>%
 
 ```
 
+```{r}
+
+```
 
 
 
