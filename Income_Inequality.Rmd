@@ -131,12 +131,8 @@ Columns 9 through 14 show how much you have to earn to belong to that percentage
 
 The last two columns show level of education. These variables are in percent. So for example, in 1990, 66.9% of the population in Alabama had a high school diploma or higher and 15.7% had a bachelor's degree or higher. 
 
+
 <<<<<<< HEAD
-##2.3 
-``` {r}
-
-``` 
-
 #Part 3 - Quantifying 
 
 ##3.1 Generating necessary variable
