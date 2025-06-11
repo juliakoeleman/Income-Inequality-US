@@ -150,19 +150,21 @@ Allmerged <- Allmerged %>%
 
 ```
 
+
+
 ```{r}
 Allmerged <- Allmerged %>%
   mutate(diff_y99_y90 = round(((y99 - y90)/ y90)*100 ,2))
 
 Allmerged <- Allmerged %>%
-  mutate(diff_y9999_y999 = round(((y9999 - y999)/ y999)*100 ,2))
+  mutate(ratio_y90_y99 = round(y99 / y90, 2))
+
+Allmerged <- Allmerged %>%
+  mutate(relGap_y90_y99 = round((y99 - y90)/ y99 * 100, 2))
 
 ```
 
+```{r}
 
 
-
-
-
-
-
+```
