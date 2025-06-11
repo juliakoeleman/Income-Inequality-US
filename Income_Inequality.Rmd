@@ -134,3 +134,25 @@ head ()
 ``` {r}
 
 ``` 
+
+#Part 3 - Quantifying 
+
+##3.1 Generating necessary variable
+
+To measure inequality: top 10% divided by bottom 90%.Not an ideal measuring, but we don't have more data on the distribution if income.
+
+```{r}
+Allmerged <- Allmerged %>%
+  mutate(Top10_vs_bottom90 = Top10_adj/(100-Top10_adj))
+
+```
+
+
+
+
+
+
+
+
+
+
