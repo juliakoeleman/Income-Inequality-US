@@ -144,14 +144,7 @@ Allmerged <- Allmerged %>%
   mutate(Top10_vs_bottom90 = round(Top10_adj/(100-Top10_adj), 2))
 ```
 
-```{r}
-Allmerged <- Allmerged %>%
-  mutate(diff_y99_y90 = round(((y99 - y90)/ y90)*100 ,2))
 
-Allmerged <- Allmerged %>%
-  mutate(diff_y9999_y999 = round(((y9999 - y999)/ y999)*100 ,2))
-
-```
 
 ```{r}
 library(ggplot2)
@@ -159,24 +152,30 @@ library(ggplot2)
 # Ensure Bachelor is numeric
 Allmerged$Bachelor <- as.numeric(Allmerged$Bachelor)
 
-# Create quartile-based education groups
-Allmerged$Education <- cut(
-  Allmerged$Bachelor,
-  breaks = quantile(Allmerged$Bachelor, probs = seq(0, 1, by = 0.25), na.rm = TRUE),
-  labels = c("Low", "Medium Low", "Medium High", "High"),
-  include.lowest = TRUE
-)
+
+#Create quartile-based education groups per year
+Allmerged <- Allmerged %>%
+  group_by(Year) %>%
+  mutate(Quartile = ntile(Bachelor, 4),
+         Education_level = case_when(
+           Quartile == 1 ~ "Low",
+           Quartile == 2 ~ "Medium Low",
+           Quartile == 3 ~ "Medium High",
+           Quartile == 4 ~ "High"
+         ))
+Allmerged <- Allmerged %>%
+  mutate(Quartile = NULL)
 
 # Make sure Education is a factor with the right order
-Allmerged$Education <- factor(
-  Allmerged$Education,
+Allmerged$Education_level <- factor(
+  Allmerged$Education_level,
   levels = c("Low", "Medium Low", "Medium High", "High")
 )
 
 
 library(ggplot2)
 
-ggplot(data = Allmerged, aes(x = Education, y = Top10_vs_bottom90)) +
+ggplot(data = Allmerged[Allmerged$Year == 2000, ], aes(x = Education_level, y = Top10_vs_bottom90)) +
   geom_boxplot() +
   labs(
     x = "\nEducation Group (Based on Bachelor % Quartiles)",
