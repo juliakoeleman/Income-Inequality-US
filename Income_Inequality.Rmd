@@ -50,7 +50,7 @@ https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states
 ```{r loading data}
 library(readxl)
 Distribution <- read_excel("data/Frank_WID_2020.xls", sheet = 3)
-Tresholds <- read_excel("data/Frank_WID_2020.xls", sheet = 4)
+Thresholds <- read_excel("data/Frank_WID_2020.xls", sheet = 4)
 Education <- read_excel("data/tabn012.xls", col_types = c("text", "skip", "text", 
 "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", 
 "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", 
@@ -64,21 +64,25 @@ Education <- read_excel("data/tabn012.xls", col_types = c("text", "skip", "text"
 ```{r}
 
 Distribution <- Distribution %>%
-  filter(Year %in% c(1990, 2000), 
-         State != c("United States", "District of Columbia")) %>%
-  mutate(State_ID = 1:100)
+  filter(Year %in% seq(1990, 2000, by = 1), 
+         State != c("United States", "District of Columbia"))
 
-Tresholds <- Tresholds %>%
-  filter(Year %in% c(1990, 2000), 
-         State != c("United States", "District of Columbia")) %>%
-  mutate(State_ID = 1:100)
+Thresholds <- Thresholds %>%
+  filter(Year %in% seq(1990, 2000, by = 1), 
+         State != c("United States", "District of Columbia"))
 
 Education <- Education[ -c(1:13, 14, 20, 24, 26, 32, 38, 44, 50, 56, 62, 68, 75:79), ]
 
 names(Education)[1:5] <- c("State", "Highschool1990", "Highschool2000", "Bachelor1990", "Bachelor2000")
+
+Education <- Education %>% 
+  mutate(State = State %>%
+           str_replace_all("…+", "") %>%
+           str_replace_all("\\.+", "") %>%
+           str_trim()) # to delete all the dots after the state name
 ```
 
-#Reshape the Education dataset to the same form as the others so you have a variable Year, and for every state a row in 1990 and 2000
+#Reshape the Education dataset to the same form as the others so you have a variable Year
 ```{r}
 df1990 <- data.frame(State = Education$State, Year = 1990, Highschool = Education$Highschool1990, Bachelor = Education$Bachelor1990, stringsAsFactors = FALSE)
 
@@ -86,10 +90,9 @@ df2000 <- data.frame(State = Education$State,Year = 2000,Highschool = Education$
 
 Education <- rbind(df1990, df2000)
 
-Education <- Education %>%
-  arrange(Year, State) %>%
-  mutate(State_ID = 1:100) %>%
+Education <- Education1 %>%
   mutate(across(3:4, ~ as.numeric(.)))
+
 
 #Or more efficient thanks to chatgpt:
 
@@ -100,23 +103,19 @@ Education <- Education %>%
     names_to = c(".value", "Year"),
     names_pattern = "(Highschool|Bachelor)(\\d+)") %>%
   arrange(Year) %>%
-  mutate(
-    State_ID = 1:100, 
-    Year = as.numeric(Year))
+  mutate(Year = as.numeric(Year))
 ```
 
 #To merge the datasets:
 ```{r}
 Allmerged <- Distribution %>%
-  inner_join(Tresholds, by = c("State_ID", "Year")) %>%
-  inner_join(Education, by = c("State_ID", "Year"))
+  inner_join(Thresholds, by = c("State", "Year")) %>%
+  full_join(Education, by = c("State", "Year"))
 
 Allmerged <- Allmerged %>%
-  select(State, State_ID, Year, everything()) %>%   
-  relocate(State_ID, .after = Year) %>%
+  select(-st.x, -st.y) %>%   
   mutate(across(where(is.numeric), ~ round(.x, 2)))
 
-#North Carolina has state_ID 33 for 1990, and 33 + 50 (number of states) = 83 for 2000 and Nevada for example 28 for 1990 and 28 + 50 = 78 for 2000. Idk if this form of identification makes sense, but i think so
 
 ```
 
@@ -145,19 +144,15 @@ Allmerged <- Allmerged %>%
 ```
 
 
-
+To visualize income inequality across different percentages of bachelor's degree, we divide them into quartiles.
 ```{r}
 library(ggplot2)
-
-# Ensure Bachelor is numeric
-Allmerged$Bachelor <- as.numeric(Allmerged$Bachelor)
-
 
 #Create quartile-based education groups per year
 Allmerged <- Allmerged %>%
   group_by(Year) %>%
   mutate(Quartile = ntile(Bachelor, 4),
-         Education_level = case_when(
+         Bachelor_level = case_when(
            Quartile == 1 ~ "Low",
            Quartile == 2 ~ "Medium Low",
            Quartile == 3 ~ "Medium High",
@@ -167,15 +162,15 @@ Allmerged <- Allmerged %>%
   mutate(Quartile = NULL)
 
 # Make sure Education is a factor with the right order
-Allmerged$Education_level <- factor(
-  Allmerged$Education_level,
+Allmerged$Bachelor_level <- factor(
+  Allmerged$Bachelor_level,
   levels = c("Low", "Medium Low", "Medium High", "High")
 )
 
 #We can use indexing or create new dataframes for 1990 and 2000 to create boxplots per year
 library(ggplot2)
 
-ggplot(data = Allmerged[Allmerged$Year == 2000, ], aes(x = Education_level, y = Top10_vs_bottom90)) +
+ggplot(data = Allmerged[Allmerged$Year == 1990, ], aes(x = Bachelor_level, y = Top10_vs_bottom90)) +
   geom_boxplot() +
   labs(
     x = "\nEducation Group (Based on Bachelor % Quartiles)",
@@ -185,7 +180,7 @@ ggplot(data = Allmerged[Allmerged$Year == 2000, ], aes(x = Education_level, y = 
 
 ```
 
-
+Spatial variation of change in income inequality
 ```{r}
 # Make sure these packages are installed and loaded
 library(dplyr)
@@ -266,6 +261,11 @@ ggplot(df_long, aes(x = reorder(State, percent), y = percent, color = education_
   theme(
     axis.text.x = element_text(angle = 60, hjust = 1, size = 8)
   )
+
+```
+
+Temporal visualization of income inequality
+```{r}
 
 ```
 
