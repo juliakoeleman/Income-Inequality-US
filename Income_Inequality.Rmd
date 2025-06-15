@@ -172,7 +172,7 @@ Allmerged$Education_level <- factor(
   levels = c("Low", "Medium Low", "Medium High", "High")
 )
 
-
+#We can use indexing or create new dataframes for 1990 and 2000 to create boxplots per year
 library(ggplot2)
 
 ggplot(data = Allmerged[Allmerged$Year == 2000, ], aes(x = Education_level, y = Top10_vs_bottom90)) +
