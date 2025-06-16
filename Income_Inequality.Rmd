@@ -295,6 +295,7 @@ ggplot(data = Allmerged[Allmerged$Year == 1990, ], aes(x = Bachelor_level, y = T
 
 ##3.5 Event analysis
 
+
 #4 Discussion
 
 ##4.1 Discuss our findings
