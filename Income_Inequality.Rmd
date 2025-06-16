@@ -1,15 +1,12 @@
+
 ---
 title: "The Effect of Education Level on Income Inequality"
 authors: "Names + Studentnumbers"
 date: "`r Sys.Date()`"
 output: pdf_document
-editor_options: 
-  markdown: 
-    wrap: 72
 ---
 
 #Set up your environment
-
 ```{r}
 setwd("~/")
 ```
@@ -32,22 +29,19 @@ packageVersion("renv")
 packageVersion("dplyr")
 ```
 
-#Title Page Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen,
-Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
-Tutorial Group 1 J.F. Fitzgerald
+#Title Page
+Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen, Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
+Tutorial Group 1
+J.F. Fitzgerald
 
 #Part 1 - Identification of the Social Problem
 
-##1.1 Describe the Social Problem Income inequality in the USA is a
-social problem because it limits equal opportunities, increases social
-tensions, and harms health and democracy.The Pew Research Center warns
-that the middle class is shrinking rapidly, while the rich grow
-richer.In addition, The OECD ranks the U.S. among the most unequal
-developed nations. These two studies emphasize the importance of this
-problem ABCDEF.
+##1.1 Describe the Social Problem
+Income inequality in the USA is a social problem because it limits equal opportunities, increases social tensions, and harms health and democracy.The Pew Research Center warns that the middle class is shrinking rapidly, while the rich grow richer.In addition, The OECD ranks the U.S. among the most unequal developed nations. These two studies emphasize the importance of this problem ABCDEF. 
 
-<https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/>?
-<https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html>
+
+https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/?
+https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html
 
 #Part 2 - Data Sourcing
 
@@ -56,7 +50,7 @@ problem ABCDEF.
 ```{r loading data}
 library(readxl)
 Distribution <- read_excel("data/Frank_WID_2020.xls", sheet = 3)
-Tresholds <- read_excel("data/Frank_WID_2020.xls", sheet = 4)
+Thresholds <- read_excel("data/Frank_WID_2020.xls", sheet = 4)
 Education <- read_excel("data/tabn012.xls", col_types = c("text", "skip", "text", 
 "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", 
 "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", 
@@ -66,36 +60,29 @@ Education <- read_excel("data/tabn012.xls", col_types = c("text", "skip", "text"
 
 ```
 
-##2.2 Short summary of data sets
-
-```{r}
-head (Distribution)
-```
-
-In this data set
-
 #Clean the data sets
-
 ```{r}
 
 Distribution <- Distribution %>%
-  filter(Year %in% c(1990, 2000), 
-         State != c("United States", "District of Columbia")) %>%
-  mutate(State_ID = 1:100)
+  filter(Year %in% seq(1990, 2000, by = 1), 
+         State != c("United States", "District of Columbia"))
 
-Tresholds <- Tresholds %>%
-  filter(Year %in% c(1990, 2000), 
-         State != c("United States", "District of Columbia")) %>%
-  mutate(State_ID = 1:100)
+Thresholds <- Thresholds %>%
+  filter(Year %in% seq(1990, 2000, by = 1), 
+         State != c("United States", "District of Columbia"))
 
 Education <- Education[ -c(1:13, 14, 20, 24, 26, 32, 38, 44, 50, 56, 62, 68, 75:79), ]
 
 names(Education)[1:5] <- c("State", "Highschool1990", "Highschool2000", "Bachelor1990", "Bachelor2000")
+
+Education <- Education %>% 
+  mutate(State = State %>%
+           str_replace_all("…+", "") %>%
+           str_replace_all("\\.+", "") %>%
+           str_trim()) # to delete all the dots after the state name
 ```
 
-#Reshape the Education dataset to the same form as the others so you
-have a variable Year, and for every state a row in 1990 and 2000
-
+#Reshape the Education dataset to the same form as the others so you have a variable Year
 ```{r}
 df1990 <- data.frame(State = Education$State, Year = 1990, Highschool = Education$Highschool1990, Bachelor = Education$Bachelor1990, stringsAsFactors = FALSE)
 
@@ -103,10 +90,9 @@ df2000 <- data.frame(State = Education$State,Year = 2000,Highschool = Education$
 
 Education <- rbind(df1990, df2000)
 
-Education <- Education %>%
-  arrange(Year, State) %>%
-  mutate(State_ID = 1:100) %>%
+Education <- Education1 %>%
   mutate(across(3:4, ~ as.numeric(.)))
+
 
 #Or more efficient thanks to chatgpt:
 
@@ -117,57 +103,208 @@ Education <- Education %>%
     names_to = c(".value", "Year"),
     names_pattern = "(Highschool|Bachelor)(\\d+)") %>%
   arrange(Year) %>%
-  mutate(
-    State_ID = 1:100, 
-    Year = as.numeric(Year))
+  mutate(Year = as.numeric(Year))
 ```
 
 #To merge the datasets:
-
 ```{r}
 Allmerged <- Distribution %>%
-  inner_join(Tresholds, by = c("State_ID", "Year")) %>%
-  inner_join(Education, by = c("State_ID", "Year"))
+  inner_join(Thresholds, by = c("State", "Year")) %>%
+  full_join(Education, by = c("State", "Year"))
 
 Allmerged <- Allmerged %>%
-  select(-st.x, -st.y, -State.x, -State.y, -State) %>%
-  relocate(State_ID, .after = Year) %>%
-  mutate(across(3:16, ~ round(.x, 2)))
+  select(-st.x, -st.y) %>%   
+  mutate(across(where(is.numeric), ~ round(.x, 2)))
 
-#North Carolina has state_ID 33 for 1990, and 33 + 50 (number of states) = 83 for 2000 and Nevada for example 28 for 1990 and 28 + 50 = 78 for 2000. Idk if this form of identification makes sense, but i think so
 
 ```
-
-##2.2 Provide a short summary of the datasets
 
 ```{r}
-
+head(Allmerged)
 ```
+This is our merged data set. In the first column you can see what year the data refers to. Next to it is the column with the State_ID. We put the states in alphabetical order and then started numbering from 1 to 100 (example: Alabama is numbered 1 in 1990 and 51 (1+50) in 2000). 
 
-\<\<\<\<\<\<\< HEAD ##2.3
+The next 5 columns show the percentages of total income that a group earns. For example, the first column shows that the top 10 percent of big earners, earn 39.9% of total income, from the state. This is the same for the 4 other columns, but here the groups get smaller and smaller. 
 
-```{r}
+Columns 9 through 14 show how much you have to earn to belong to that percentage of big earners. For example, in 1990 you had to earn more than $101,762.24 to be among the top 10 big earners in Alabama. Did you want to be among the top 5 in 1990? Then you had to earn more than $131,506.30. 
 
-```
+The last two columns show level of education. These variables are in percent. So for example, in 1990, 66.9% of the population in Alabama had a high school diploma or higher and 15.7% had a bachelor's degree or higher. 
 
-#Part 3 - Quantifying
+
+<<<<<<< HEAD
+#Part 3 - Quantifying 
 
 ##3.1 Generating necessary variable
 
-To measure inequality: top 10% divided by bottom 90%. Not an ideal
-measuring, but we don't have more data on the distribution of income.
+To measure inequality: top 10% divided by bottom 90%.Not an ideal measuring, but we don't have more data on the distribution if income.
 
 ```{r}
 Allmerged <- Allmerged %>%
   mutate(Top10_vs_bottom90 = round(Top10_adj/(100-Top10_adj), 2))
+```
+
+
+To visualize income inequality across different percentages of bachelor's degree, we divide them into quartiles.
+```{r}
+library(ggplot2)
+
+#Create quartile-based education groups per year
+Allmerged <- Allmerged %>%
+  group_by(Year) %>%
+  mutate(Quartile = ntile(Bachelor, 4),
+         Bachelor_level = case_when(
+           Quartile == 1 ~ "Low",
+           Quartile == 2 ~ "Medium Low",
+           Quartile == 3 ~ "Medium High",
+           Quartile == 4 ~ "High"
+         ))
+Allmerged <- Allmerged %>%
+  mutate(Quartile = NULL)
+
+# Make sure Education is a factor with the right order
+Allmerged$Bachelor_level <- factor(
+  Allmerged$Bachelor_level,
+  levels = c("Low", "Medium Low", "Medium High", "High")
+)
+
+#We can use indexing or create new dataframes for 1990 and 2000 to create boxplots per year
+library(ggplot2)
+
+ggplot(data = Allmerged[Allmerged$Year == 1990, ], aes(x = Bachelor_level, y = Top10_vs_bottom90)) +
+  geom_boxplot() +
+  labs(
+    x = "\nEducation Group (Based on Bachelor % Quartiles)",
+    y = "Income Inequality (Top 10% vs Bottom 90%)\n",
+    title = "Effect of Education Level on Income Inequality"
+  )
 
 ```
+
+Spatial variation of change in income inequality
+```{r}
+# Make sure these packages are installed and loaded
+library(dplyr)
+library(tidyr)
+library(maps)
+library(ggplot2)
+
+diff_data <- Allmerged %>%
+  filter(Year %in% c(1990, 2000)) %>%
+  select(State, Year, Top10_vs_bottom90) %>%
+  pivot_wider(names_from = Year, values_from = Top10_vs_bottom90) %>%
+  mutate(
+    # Extract only the real state name before any dots or extra characters
+    state_lower = tolower(gsub("^([a-zA-Z ]+).*", "\\1", State)),
+    state_lower = trimws(state_lower),
+    diff = `2000` - `1990`
+  ) %>%
+  filter(state_lower != "district of columbia")
+
+us_states <- map_data("state")
+map_plot_data <- left_join(us_states, diff_data, by = c("region" = "state_lower"))
+
+# Check: should now match!
+print(setdiff(sort(unique(us_states$region)), sort(unique(diff_data$state_lower))))
+print(setdiff(sort(unique(diff_data$state_lower)), sort(unique(us_states$region))))
+
+ggplot(map_plot_data, aes(long, lat, group = group, fill = diff)) +
+  geom_polygon(color = "white") +
+  coord_fixed(1.3) +
+  scale_fill_gradient2(
+    low = "blue", mid = "white", high = "red", midpoint = 0,
+    name = "Difference\n(2000 - 1990)"
+  ) +
+  labs(
+    title = "Change in Income Inequality by State",
+    subtitle = "Top 10% vs Bottom 90% (2000 - 1990)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
 
 ```{r}
-Allmerged <- Allmerged %>%
-  mutate(diff_y99_y90 = round(((y99 - y90)/ y90)*100 ,2))
+library(ggplot2)
+library(dplyr)
+library(tidyr)
 
-Allmerged <- Allmerged %>%
-  mutate(diff_y9999_y999 = round(((y9999 - y999)/ y999)*100 ,2))
+# Gather into long format
+df_long <- Allmerged %>%
+  filter(Year == 2000) %>%
+  pivot_longer(cols = c(Highschool, Bachelor), names_to = "education_level", values_to = "percent")
+
+ggplot(df_long, aes(x = reorder(State, percent), y = percent, color = education_level)) +
+  geom_point(size = 2) +
+  coord_flip() +
+  labs(
+    title = "Education by State (2000)",
+    x = "State",
+    y = "Percent"
+  ) +
+  scale_color_manual(values = c("Highschool" = "skyblue", "Bachelor" = "orange")) +
+  theme_minimal() +
+  theme(
+    axis.text.y = element_text(size = 8) # Reduce state name size for clarity
+  )
+
+#or is this one better
+
+ggplot(df_long, aes(x = reorder(State, percent), y = percent, color = education_level)) +
+  geom_point(size = 2) +
+  labs() +
+  scale_color_manual(values = c("Highschool" = "skyblue", "Bachelor" = "orange")) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 60, hjust = 1, size = 8)
+  )
 
 ```
+
+Temporal visualization of income inequality
+```{r}
+df_summary <- Allmerged %>%
+  group_by(Year) %>%
+  summarise(median_ineq = median(Top10_vs_bottom90),
+            mean_ineq = mean(Top10_vs_bottom90))
+
+ggplot(df_summary, aes(x = Year)) +
+  geom_line(aes(y = median_ineq), color = "blue", 
+            linewidth = 1.2, 
+            lineend = "round") +
+  geom_line(aes(y = mean_ineq), 
+            color = "red",
+            linewidth = 1.2,
+            lineend = "round") +
+  labs(title = "Income Inequality per year", 
+       subtitle = "Median (blue) vs Mean (red)",
+       x = "\nYear", 
+       y = "Top 10% / Bottom 90% ratio\n") +
+  scale_x_continuous(limits = c(1990, 2000), breaks = 1990:2000) +
+  scale_y_continuous(breaks = seq(0.5, 0.8, by = 0.02)) +
+  theme_minimal(base_size = 14) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5))
+
+
+```
+
+
+
+#5 Reproductibility
+
+##5.2 Reference list
+Pew Research Center. (2020, January 9). Trends in U.S. income and wealth inequality. Pew Research Center.
+Retrieved from https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/
+  
+  Denk, O., Hagemann, R., Lenain, P., & Somma, V. (2013, May 27). Inequality and poverty in the United States: Public policies for inclusive growth (OECD Working Paper No. 1052). OECD.
+Retrieved from https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html
+
+
+
+
+
+
