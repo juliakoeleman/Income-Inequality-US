@@ -170,7 +170,7 @@ Allmerged$Bachelor_level <- factor(
 #We can use indexing or create new dataframes for 1990 and 2000 to create boxplots per year
 library(ggplot2)
 
-ggplot(data = Allmerged[Allmerged$Year == 1990, ], aes(x = Bachelor_level, y = Top10_vs_bottom90)) +
+ggplot(data = Allmerged[Allmerged$Year == 2000, ], aes(x = Bachelor_level, y = Top10_vs_bottom90)) +
   geom_boxplot() +
   labs(
     x = "\nEducation Group (Based on Bachelor % Quartiles)",
@@ -179,6 +179,7 @@ ggplot(data = Allmerged[Allmerged$Year == 1990, ], aes(x = Bachelor_level, y = T
   )
 
 ```
+
 
 Spatial variation of change in income inequality
 ```{r}
