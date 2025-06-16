@@ -90,7 +90,7 @@ df2000 <- data.frame(State = Education$State,Year = 2000,Highschool = Education$
 
 Education <- rbind(df1990, df2000)
 
-Education <- Education1 %>%
+Education <- Education %>%
   mutate(across(3:4, ~ as.numeric(.)))
 
 
