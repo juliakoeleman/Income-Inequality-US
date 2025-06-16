@@ -1,7 +1,7 @@
 
 ---
-title: "The Effect of Education Level on Income Inequality"
-authors: "Names + Studentnumbers"
+"The Effect of Education Level on Income Inequality"
+"Names + Studentnumbers"
 date: "`r Sys.Date()`"
 output: pdf_document
 ---
@@ -60,7 +60,7 @@ Education <- read_excel("data/tabn012.xls", col_types = c("text", "skip", "text"
 
 ```
 
-#Clean the data sets
+##2.2 Clean the data sets
 ```{r}
 
 Distribution <- Distribution %>%
@@ -82,7 +82,7 @@ Education <- Education %>%
            str_trim()) # to delete all the dots after the state name
 ```
 
-#Reshape the Education dataset to the same form as the others so you have a variable Year
+##2.3 Reshape the Education dataset to the same form as the others so you have a variable Year
 ```{r}
 df1990 <- data.frame(State = Education$State, Year = 1990, Highschool = Education$Highschool1990, Bachelor = Education$Bachelor1990, stringsAsFactors = FALSE)
 
@@ -106,7 +106,7 @@ Education <- Education %>%
   mutate(Year = as.numeric(Year))
 ```
 
-#To merge the datasets:
+##2.4 To merge the datasets
 ```{r}
 Allmerged <- Distribution %>%
   inner_join(Thresholds, by = c("State", "Year")) %>%
@@ -119,6 +119,7 @@ Allmerged <- Allmerged %>%
 
 ```
 
+##2.5 Short summary of dataset
 ```{r}
 head(Allmerged)
 ```
@@ -132,9 +133,10 @@ The last two columns show level of education. These variables are in percent. So
 
 
 <<<<<<< HEAD
+
 #Part 3 - Quantifying 
 
-##3.1 Generating necessary variable
+##3.1 Generating necessary variable 
 
 To measure inequality: top 10% divided by bottom 90%.Not an ideal measuring, but we don't have more data on the distribution if income.
 
@@ -143,44 +145,7 @@ Allmerged <- Allmerged %>%
   mutate(Top10_vs_bottom90 = round(Top10_adj/(100-Top10_adj), 2))
 ```
 
-
-To visualize income inequality across different percentages of bachelor's degree, we divide them into quartiles.
-```{r}
-library(ggplot2)
-
-#Create quartile-based education groups per year
-Allmerged <- Allmerged %>%
-  group_by(Year) %>%
-  mutate(Quartile = ntile(Bachelor, 4),
-         Bachelor_level = case_when(
-           Quartile == 1 ~ "Low",
-           Quartile == 2 ~ "Medium Low",
-           Quartile == 3 ~ "Medium High",
-           Quartile == 4 ~ "High"
-         ))
-Allmerged <- Allmerged %>%
-  mutate(Quartile = NULL)
-
-# Make sure Education is a factor with the right order
-Allmerged$Bachelor_level <- factor(
-  Allmerged$Bachelor_level,
-  levels = c("Low", "Medium Low", "Medium High", "High")
-)
-
-#We can use indexing or create new dataframes for 1990 and 2000 to create boxplots per year
-library(ggplot2)
-
-ggplot(data = Allmerged[Allmerged$Year == 1990, ], aes(x = Bachelor_level, y = Top10_vs_bottom90)) +
-  geom_boxplot() +
-  labs(
-    x = "\nEducation Group (Based on Bachelor % Quartiles)",
-    y = "Income Inequality (Top 10% vs Bottom 90%)\n",
-    title = "Effect of Education Level on Income Inequality"
-  )
-
-```
-
-Spatial variation of change in income inequality
+##3.2 Spatial variation of change in income inequality
 ```{r}
 # Make sure these packages are installed and loaded
 library(dplyr)
@@ -264,7 +229,7 @@ ggplot(df_long, aes(x = reorder(State, percent), y = percent, color = education_
 
 ```
 
-Temporal visualization of income inequality
+##3.3 Temporal visualization of income inequality
 ```{r}
 df_summary <- Allmerged %>%
   group_by(Year) %>%
@@ -292,6 +257,47 @@ ggplot(df_summary, aes(x = Year)) +
 
 ```
 
+##3.4 To visualize income inequality across different percentages of bachelor's degree, we divide them into quartiles.
+```{r}
+library(ggplot2)
+
+#Create quartile-based education groups per year
+Allmerged <- Allmerged %>%
+  group_by(Year) %>%
+  mutate(Quartile = ntile(Bachelor, 4),
+         Bachelor_level = case_when(
+           Quartile == 1 ~ "Low",
+           Quartile == 2 ~ "Medium Low",
+           Quartile == 3 ~ "Medium High",
+           Quartile == 4 ~ "High"
+         ))
+Allmerged <- Allmerged %>%
+  mutate(Quartile = NULL)
+
+# Make sure Education is a factor with the right order
+Allmerged$Bachelor_level <- factor(
+  Allmerged$Bachelor_level,
+  levels = c("Low", "Medium Low", "Medium High", "High")
+)
+
+#We can use indexing or create new dataframes for 1990 and 2000 to create boxplots per year
+library(ggplot2)
+
+ggplot(data = Allmerged[Allmerged$Year == 1990, ], aes(x = Bachelor_level, y = Top10_vs_bottom90)) +
+  geom_boxplot() +
+  labs(
+    x = "\nEducation Group (Based on Bachelor % Quartiles)",
+    y = "Income Inequality (Top 10% vs Bottom 90%)\n",
+    title = "Effect of Education Level on Income Inequality"
+  )
+
+```
+
+##3.5 Event analysis
+
+#4 Discussion
+
+##4.1 Discuss our findings
 
 
 #5 Reproductibility
