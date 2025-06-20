@@ -51,12 +51,7 @@ https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states
 library(readxl)
 Distribution <- read_excel("data/Frank_WID_2020.xls", sheet = 3)
 Thresholds <- read_excel("data/Frank_WID_2020.xls", sheet = 4)
-Education <- read_excel("data/tabn012.xls", col_types = c("text", "skip", "text", 
-"skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", 
-"skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", 
-"skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", 
-"skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", 
-"skip", "skip", "skip", "skip", "skip", "skip"))
+Education <- read_excel("data/tabn012.xls", col_types = c("text", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip","skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip"))
 
 ```
 
@@ -64,11 +59,11 @@ Education <- read_excel("data/tabn012.xls", col_types = c("text", "skip", "text"
 ```{r}
 
 Distribution <- Distribution %>%
-  filter(Year %in% seq(1990, 2000, by = 1), 
+  filter(Year %in% 1990:2000, 
          State != c("United States", "District of Columbia"))
 
 Thresholds <- Thresholds %>%
-  filter(Year %in% seq(1990, 2000, by = 1), 
+  filter(Year %in% 1990:2000, 
          State != c("United States", "District of Columbia"))
 
 Education <- Education[ -c(1:13, 14, 20, 24, 26, 32, 38, 44, 50, 56, 62, 68, 75:79), ]
@@ -136,7 +131,7 @@ The last two columns show level of education. These variables are in percent. So
 
 #Part 3 - Quantifying 
 
-##3.1 Generating necessary variable 
+##3.1 Generating necessary variables 
 
 To measure inequality: top 10% divided by bottom 90%.Not an ideal measuring, but we don't have more data on the distribution if income.
 
@@ -192,42 +187,6 @@ ggplot(map_plot_data, aes(long, lat, group = group, fill = diff)) +
 ```
 
 
-```{r}
-library(ggplot2)
-library(dplyr)
-library(tidyr)
-
-# Gather into long format
-df_long <- Allmerged %>%
-  filter(Year == 2000) %>%
-  pivot_longer(cols = c(Highschool, Bachelor), names_to = "education_level", values_to = "percent")
-
-ggplot(df_long, aes(x = reorder(State, percent), y = percent, color = education_level)) +
-  geom_point(size = 2) +
-  coord_flip() +
-  labs(
-    title = "Education by State (2000)",
-    x = "State",
-    y = "Percent"
-  ) +
-  scale_color_manual(values = c("Highschool" = "skyblue", "Bachelor" = "orange")) +
-  theme_minimal() +
-  theme(
-    axis.text.y = element_text(size = 8) # Reduce state name size for clarity
-  )
-
-#or is this one better
-
-ggplot(df_long, aes(x = reorder(State, percent), y = percent, color = education_level)) +
-  geom_point(size = 2) +
-  labs() +
-  scale_color_manual(values = c("Highschool" = "skyblue", "Bachelor" = "orange")) +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 60, hjust = 1, size = 8)
-  )
-
-```
 
 ##3.3 Temporal visualization of income inequality
 ```{r}
