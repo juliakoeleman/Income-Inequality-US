@@ -73,7 +73,7 @@ Education <- Education %>%
   mutate(State = State %>%
            str_replace_all("…+", "") %>%
            str_replace_all("\\.+", "") %>%
-           str_trim()) # to delete all the dots after the state name
+           str_trim()) # to delete all the dots after the state 
 ```
 
 ##2.3 Reshape the Education dataset to the same form as the others so you have a variable Year
