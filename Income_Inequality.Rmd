@@ -1,4 +1,3 @@
-
 ---
 "The Effect of Education Level on Income Inequality"
 "Names + Studentnumbers"
