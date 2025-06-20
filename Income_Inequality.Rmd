@@ -266,7 +266,13 @@ ggplot(df_summary, aes(x = Year)) +
   annotate("text", x = 1995, y = 0.76, size = 3, label = "Introduction\nof NAFTA")
 
 ```
+The North American Free Trade Agreement (NAFTA) between the U.S., Mexico, and Canada came into effect in January 1994 with the goal of creating a trilateral trade bloc to increase economic integration, boost trade, and stimulate growth by removing trade barriers and import tariffs. As a result, exports and imports became cheaper, and a significant share of U.S. manufacturing was relocated to Mexico due to lower labor costs (SOURCE).
 
+NAFTA established the world’s largest free trade zone, but not everyone benefited equally. Higher-income groups in the U.S. gained the most, as large corporations experienced increased profits that mainly flowed to shareholders and high-income individuals (This trend explains the rise in the mean income, while the median grew more slowly)(SOURCE).
+
+While the NAFTA boosted overall GDP, it disproportionately affected lower-income groups. The United States lost numerous manufacturing jobs (Estimated at 682,900 by 2010) as companies relocated production to Mexico to cut labor costs. This acceleration of outsourcing significantly impacted American manufacturing and low-skilled workers. Consequently, some workers saw their income stagnate or decline, whereas individuals in management and high-skill sectors experienced income growth. As a result, income inequality widened, further expanding the gap between the bottom 90 percent and the top earners (SOURCE).
+
+However, it is important to recognize that the rise in income inequality cannot be attributed solely to NAFTA. Factors such as technological advancements, shifts in labor market policies and broader globalization have also played significant roles in driving this trend.
 
 #4 Discussion
 
