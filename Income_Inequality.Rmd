@@ -115,10 +115,10 @@ Education <- Education %>%
 ```
 
 ```{r}
-Allmerged <- Distribution %>%
+Inequality <- Distribution %>%
   full_join(Education, by = c("State", "Year"))
 
-Allmerged <- Allmerged %>%
+Inequality <- Inequality %>%
   select(-st) %>%
   mutate(across(where(is.numeric), ~ round(.x, 2)))
 ```
@@ -127,7 +127,7 @@ Allmerged <- Allmerged %>%
 To measure inequality: top 10% divided by bottom 90%.Not an ideal measuring, but we don't have more data on the distribution if income.
 
 ```{r}
-Allmerged <- Allmerged %>%
+Inequality <- Inequality %>%
   mutate(Top10_vs_bottom90 = round(Top10_adj/(100-Top10_adj), 2))
 ```
 
@@ -139,7 +139,7 @@ library(tidyr)
 library(maps)
 library(ggplot2)
 
-diff_data <- Allmerged %>%
+diff_data <- Inequality %>%
   filter(Year %in% c(1990, 2000)) %>%
   select(State, Year, Top10_vs_bottom90) %>%
   pivot_wider(names_from = Year, values_from = Top10_vs_bottom90) %>%
@@ -181,7 +181,7 @@ ggplot(map_plot_data, aes(long, lat, group = group, fill = diff)) +
 
 ##3.3 Temporal visualization of income inequality
 ```{r}
-df_summary <- Allmerged %>%
+df_summary <- Inequality %>%
   group_by(Year) %>%
   summarise(median_ineq = median(Top10_vs_bottom90),
             mean_ineq = mean(Top10_vs_bottom90))
@@ -212,7 +212,7 @@ ggplot(df_summary, aes(x = Year)) +
 library(ggplot2)
 
 #Create quartile-based education groups per year
-Allmerged <- Allmerged %>%
+Inequality <- Inequality %>%
   group_by(Year) %>%
   mutate(Quartile = ntile(Bachelor, 4),
          Bachelor_level = case_when(
@@ -221,19 +221,19 @@ Allmerged <- Allmerged %>%
            Quartile == 3 ~ "Medium High",
            Quartile == 4 ~ "High"
          ))
-Allmerged <- Allmerged %>%
+Inequality <- Inequality %>%
   mutate(Quartile = NULL)
 
 # Make sure Education is a factor with the right order
-Allmerged$Bachelor_level <- factor(
-  Allmerged$Bachelor_level,
+Inequality$Bachelor_level <- factor(
+  Inequality$Bachelor_level,
   levels = c("Low", "Medium Low", "Medium High", "High")
 )
 
 #We can use indexing or create new dataframes for 1990 and 2000 to create boxplots per year
 library(ggplot2)
 
-ggplot(data = Allmerged[Allmerged$Year == 1990, ], aes(x = Bachelor_level, y = Top10_vs_bottom90)) +
+ggplot(data = Inequality[Inequality$Year == 2000, ], aes(x = Bachelor_level, y = Top10_vs_bottom90)) +
   geom_boxplot() +
   labs(
     x = "\nEducation Group (Based on Bachelor % Quartiles)",
@@ -245,7 +245,7 @@ ggplot(data = Allmerged[Allmerged$Year == 1990, ], aes(x = Bachelor_level, y = T
 
 ##3.5 Event analysis
 ```{r}
-df_summary <- Allmerged %>%
+df_summary <- Inequality %>%
   group_by(Year) %>%
   summarise(median_ineq = median(Top10_vs_bottom90),
             mean_ineq = mean(Top10_vs_bottom90))
@@ -268,7 +268,7 @@ ggplot(df_summary, aes(x = Year)) +
   theme(plot.title = element_text(hjust = 0.5, face = "bold"),
     plot.subtitle = element_text(hjust = 0.5)) +
   geom_vline(xintercept = 1994) +
-  annotate("text", x = 1995, y = 0.76, size = 3, label = "Introduction\nof NAFTA")
+  annotate("text", x = 1995, y = 0.77, size = 3, label = "Introduction\nof NAFTA")
 
 ```
 The North American Free Trade Agreement (NAFTA) between the U.S., Mexico, and Canada came into effect in January 1994 with the goal of creating a trilateral trade bloc to increase economic integration, boost trade, and stimulate growth by removing trade barriers and import tariffs. As a result, exports and imports became cheaper, and a significant share of U.S. manufacturing was relocated to Mexico due to lower labor costs (SOURCE).
