@@ -114,6 +114,7 @@ Education <- Education %>%
 
 ```
 
+To merge the datasets, the full_join() function is applied. This function is appropriate because it performs an outer join, retaining all observations from both datasets based on the specific join keys (e.g., State and Year). Since the distribution dataset includes data for each year from 1990 to 2000, and the Education dataset only includes data for 1990 and 2000, full_join() ensures that no rows are lost during the merge. Missing values are introduced where data is not available in one of the datasets, allowing for a complete and allinged structure for subsequent analysis. After the merge, all numeric values are rounded to two decimals.
 ```{r}
 Inequality <- Distribution %>%
   full_join(Education, by = c("State", "Year"))
@@ -124,7 +125,7 @@ Inequality <- Inequality %>%
 ```
 
 ## 3.2 Creating new variables
-To measure inequality: top 10% divided by bottom 90%.Not an ideal measuring, but we don't have more data on the distribution if income.
+
 
 ```{r}
 Inequality <- Inequality %>%
