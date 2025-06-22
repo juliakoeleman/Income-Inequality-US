@@ -15,18 +15,21 @@ setwd("~/")
 install.packages("tidyverse")
 install.packages("renv")
 install.packages("dplyr")
+install.packages("readxl")
 ```
 
 ```{r include=FALSE}
 library(tidyverse)
 library(renv)
 library(dplyr)
+library(readxl)
 ```
 
 ```{r include=FALSE}
 packageVersion("tidyverse")
 packageVersion("renv")
 packageVersion("dplyr")
+packageVersion("readxl")
 ```
 
 #Title Page Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen,
@@ -51,9 +54,21 @@ problem ABCDEF.
 ## 2.1 Load in the data
 
 ```{r loading data, echo=TRUE}
-library(readxl)
-Distribution <- read_excel("data/Frank_WID_2020.xls", sheet = 3)
-Education <- read_excel("data/tabn012.xls", col_types = c("text", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip","skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip"))
+# Name of the local zip file
+zipfile <- "datasets_to_share.zip"
+
+# Download the zip file
+if (!file.exists(zipfile)) {
+  download.file("https://drive.google.com/uc?export=download&id=1TYJDCbxCDWhbZwQ6kkY-RJXtwDgOMdX2",
+                destfile = zipfile, mode = "wb")
+}
+
+# Unzip the file into the folder 'datasets_income_inequality'
+unzip(zipfile, exdir = "datasets_income_inequality")
+
+#Load the files
+Distribution <- read_excel("datasets_income_inequality/Frank_WID_2020.xls", sheet = 3)
+Education <- read_excel("datasets_income_inequality/tabn012.xls", col_types = c("text", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip","skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip"))
 
 ```
 
