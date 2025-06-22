@@ -53,7 +53,7 @@ problem ABCDEF.
 
 ## 2.1 Load in the data
 
-```{r loading data, echo=TRUE}
+```{r loading data, include=FALSE}
 # Name of the local zip file
 zipfile <- "datasets_to_share.zip"
 
@@ -65,7 +65,9 @@ if (!file.exists(zipfile)) {
 
 # Unzip the file into the folder 'datasets_income_inequality'
 unzip(zipfile, exdir = "datasets_income_inequality")
+```
 
+```{r}
 #Load the files
 Distribution <- read_excel("datasets_income_inequality/Frank_WID_2020.xls", sheet = 3)
 Education <- read_excel("datasets_income_inequality/tabn012.xls", col_types = c("text", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip","skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip"))
