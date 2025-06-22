@@ -147,9 +147,12 @@ Inequality <- Inequality %>%
 
 To measure income inequality, a new variable is constructed, modeled after the Palma Ratio. This ratio is defined as "the ratio of the income share of the top 10 percent over that of the bottom 40 percent" (Basu & Stiglitz, 2016, p. xxvi), and is designed to capture inequality at the top and bottom of the income distribution. However, the Distribution dataset does not include the income share of the bottom 40 percent. Therefore, as a practical and intuitive alternative, inequality is measured by dividing the income share of the top 10 percent by that of the bottom 90 percent (i.e., 100% minus the top 10%). 
 
-This Top10_vs_bottom90 ratio reflects income concentration at the top relative to the vast majority of the population and provides a broad, interpretable measure of inequality. 
+Using this measure, inequality will be visualized over time by presenting the mean and median values of all U.S. states. This visualization provides a broad overview of the overall trend in inequality across the country, showing whether inequality is generally increasing or decreasing over time.
 
-Using this measure, inequality will be visualized over time by presenting the mean and median values of all U.S. states. Additionally, a second variable groups states into four categories - Low, Medium Low, Medium High, and High - based on the percentage of the population with a bachelor's degree or higher, allowing inequality to be visualized across sub-populations.
+Additionally, a second new variable groups states into four categories - Low, Medium Low, Medium High, and High - based on the percentage of the population with a bachelor's degree or higher, allowing inequality to be examined across sub-populations. This approach will help reveal whether states with a higher share of highly educated residents tend to have a higher or lower inequality. 
+
+Finally, inequality will be visualized across the 50 states through a third new variable that shows the absolute change in inequality between 1990 and 2000. Not all states experience inequality changes equally: some may show significant increases while others may remain stable. This is related to local economies, policies, or demographic shifts (SOURCE).
+
 
 ```{r}
 Inequality <- Inequality %>%
@@ -176,7 +179,7 @@ Inequality$Bachelor_level <- factor(
 )
 ```
 
-##3.2 Spatial variation of change in income inequality
+## 3.2 Spatial variation of change in income inequality
 
 ```{r}
 # Make sure these packages are installed and loaded
