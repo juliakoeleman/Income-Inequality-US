@@ -1,5 +1,5 @@
 ---
-title: "The Effect of Education Level on Income Inequality"
+title: "Education and Inequality: A State-Level Analysis of the U.S. (1990–2000)"
 author: "Carlijn Calori (2860228), Leah Delikát (2813155), 
 Fadhil Dhafir (2847129), Sten Groen (2813781), Julia Koeleman, Anne Schrama (2812834), Marie-Louise Stevens (2814083), Sophia Zentgraf"
 date: "`r Sys.Date()`"
@@ -352,7 +352,7 @@ Basu, K., & Stiglitz, J. E. (Eds.). (2016). Inequality and Growth: Patterns and 
 
 Denk, O., Hagemann, R. P., Lenain, P., Somma, V. (2013). Inequality and Poverty in the United States: Public Policies for Inclusive Growth. In *OECD Economics Department Working Papers* (No. 1052). <https://dx.doi.org/10.1787/5k46957cwv8q-en>
 
-Floyd, D. (2025). *How Did NAFTA Affect the Economies of Participating Countries?* Investopedia. <https://www.investopedia.com/articles/economics/08/north-american-free-trade-agreement.asp#:~:text=Cons%20of%20NAFTA%20Many%20jobs%20shifted%20from,suppress%20wages%20and%20opportunities%20for%20several%20parties>.
+Floyd, D. (2025). *How Did NAFTA Affect the Economies of Participating Countries?* Investopedia. <https://www.investopedia.com/articles/economics/08/north-american-free-trade-agreement.asp#:~:text=Cons%20of%20NAFTA%20Many%20jobs%20shifted%20from,suppress%20wages%20and%20opportunities%20for%20several%20parties>.
 
 Horowitz, J., Igielnik, R., Kochhar, R., & Pew Research Center. (2020b). *Most Americans Say There Is Too Much Economic Inequality in the U.S., but Fewer Than Half Call It a Top Priority*. <https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.09.20_economic-inequailty_FULL.pdf>
 
