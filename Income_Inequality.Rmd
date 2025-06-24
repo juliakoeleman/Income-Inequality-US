@@ -347,6 +347,7 @@ To conclude, our analysis has shown that income inequality is widespread in the 
 # 5 Reproducibility
 
 ## 5.1 Github Repository Link
+<https://github.com/juliakoeleman/Income-Inequality-US.git> 
 
 ## 5.2 Reference List
 
