@@ -6,28 +6,33 @@ output: pdf_document
 ---
 
 #Set up your environment
-```{r}
+
+```{r include=FALSE}
 setwd("~/")
 ```
 
-```{r packages_install, include = FALSE}
+```{r packages_install, include=FALSE}
 install.packages("tidyverse")
 install.packages("renv")
 install.packages("dplyr")
+install.packages("readxl")
 ```
 
-```{r}
+```{r include=FALSE}
 library(tidyverse)
 library(renv)
 library(dplyr)
+library(readxl)
 ```
 
-```{r}
+```{r include=FALSE}
 packageVersion("tidyverse")
 packageVersion("renv")
 packageVersion("dplyr")
+packageVersion("readxl")
 ```
 
+<<<<<<< HEAD
 #Title Page
 Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen, Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
 
@@ -44,54 +49,100 @@ Several well-known sources have pointed out that income inequality is a major co
 
 Even though this topic has been researched before, our project takes a closer look than many past studies. We focus on differences between U.S. states to see how the link between education and income changes from one region to another. By doing this, we can offer a more detailed and complete picture of income inequality. With this more in-depth analysis, we hope to find new insights that haven’t been explored in other research.
 
+=======
+#Title Page Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen,
+Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
+Tutorial: Group 1 J.F. Fitzgerald
 
-#Part 2 - Data Sourcing
+#Part 1 - Identification of the Social Problem
 
-##2.1 Load in Data
+##1.1 Describe the Social Problem Income inequality in the USA is a
+social problem because it limits equal opportunities, increases social
+tensions, and harms health and democracy.The Pew Research Center warns
+that the middle class is shrinking rapidly, while the rich grow
+richer.In addition, The OECD ranks the U.S. among the most unequal
+developed nations. These two studies emphasize the importance of this
+problem ABCDEF.
 
-```{r loading data}
-library(readxl)
-Distribution <- read_excel("data/Frank_WID_2020.xls", sheet = 3)
-Education <- read_excel("data/tabn012.xls", col_types = c("text", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip","skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip"))
+<https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/>?
+<https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html>
 
+# Part 2: Data Sourcing
+>>>>>>> 03b03c258f6d14f5da713791edda03aa984ea507
+
+## 2.1 Load in the data
+
+```{r loading data, include=FALSE}
+# Name of the local zip file
+zipfile <- "datasets_to_share.zip"
+
+# Download the zip file
+if (!file.exists(zipfile)) {
+  download.file("https://drive.google.com/uc?export=download&id=1TYJDCbxCDWhbZwQ6kkY-RJXtwDgOMdX2",
+                destfile = zipfile, mode = "wb")
+}
+
+# Unzip the file into the folder 'datasets_income_inequality'
+unzip(zipfile, exdir = "datasets_income_inequality")
 ```
 
-
-##2.2 Short summary of dataset
 ```{r}
-head(Distribution)
+#Load the files
+Distribution <- read_excel("datasets_income_inequality/Frank_WID_2020.xls", sheet = 3)
+Education <- read_excel("datasets_income_inequality/tabn012.xls", col_types = c("text", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip","skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip"))
+
 ```
 
-```{r}
-head(Education)
-```
-This is our merged data set. In the first column you can see what year the data refers to. Next to it is the column with the State_ID. We put the states in alphabetical order and then started numbering from 1 to 100 (example: Alabama is numbered 1 in 1990 and 51 (1+50) in 2000). 
+## 3.1 Summary of the datasets
 
-The next 5 columns show the percentages of total income that a group earns. For example, the first column shows that the top 10 percent of big earners, earn 39.9% of total income, from the state. This is the same for the 4 other columns, but here the groups get smaller and smaller. 
+## 3.2 Describing the type of variables in the datasets
 
-Columns 9 through 14 show how much you have to earn to belong to that percentage of big earners. For example, in 1990 you had to earn more than $101,762.24 to be among the top 10 big earners in Alabama. Did you want to be among the top 5 in 1990? Then you had to earn more than $131,506.30. 
+This is our merged data set. In the first column you can see what year the data refers to. Next to it is the column with the State_ID. We put
+the states in alphabetical order and then started numbering from 1 to 100 (example: Alabama is numbered 1 in 1990 and 51 (1+50) in 2000).
 
-The last two columns show level of education. These variables are in percent. So for example, in 1990, 66.9% of the population in Alabama had a high school diploma or higher and 15.7% had a bachelor's degree or higher. 
+The next 5 columns show the percentages of total income that a group
+earns. For example, the first column shows that the top 10 percent of
+big earners, earn 39.9% of total income, from the state. This is the
+same for the 4 other columns, but here the groups get smaller and
+smaller.
 
-## Describing the type of variables in the datasets
+Columns 9 through 14 show how much you have to earn to belong to that
+percentage of big earners. For example, in 1990 you had to earn more
+than \$101,762.24 to be among the top 10 big earners in Alabama. Did you
+want to be among the top 5 in 1990? Then you had to earn more than
+\$131,506.30.
 
-# Part 3: Quantifying 
+The last two columns show level of education. These variables are in
+percent. So for example, in 1990, 66.9% of the population in Alabama had
+a high school diploma or higher and 15.7% had a bachelor's degree or
+higher.
+
+# Part 3: Quantifying
 
 ## 3.1 Data Cleaning
 
-Only the years 1990 to 2000 are kept in the Distribution dataset. This is because the Education dataset includes data only for 1990 and 2000. TO ensure the datasets can be merged and compared properly, just 1990, 2000, and the years in between are included. 
+Only the years 1990 to 2000 are kept in the Distribution dataset. This is because the Education dataset includes data only for 1990 and 2000.
+To ensure the datasets can be merged and compared properly, just 1990, 2000, and the years in between are included.
 
 In addition, two rows are removed, as they are not a U.S. state. One of the rows corresponds to the entire United States, while the other represents the District of Columbia.
+
 ```{r}
 Distribution <- Distribution %>%
   filter(Year %in% 1990:2000, 
          State != c("United States", "District of Columbia"))
 ```
 
+For the Education dataset, unnecessary rows are removed. These rows contain no data and consist only of blank spaces between entries. Also,
+two rows representing the entire United States and the District of Columbia are removed.
+
+To simplify the datatset, columns are renamed to reflect the type of data they contain, and any dots following state names are removed.
+
+For the final step of cleaning, before merging the two datasets, the Education dataset needs to be converted to a long format. Currently, it contains four separate variables for the years 1990 and 2000, but these
+need to be combined into a single column with the years listed vertically. This transformation allows the dataset to be merged properly with the Distribution dataset, which is already in long format.
 
 ```{r}
 Education <- Education[ -c(1:13, 14, 20, 24, 26, 32, 38, 44, 50, 56, 62, 68, 75:79), ]
-``` 
+```
 
 ```{r}
 names(Education)[1:5] <- c("State", "Highschool1990", "Highschool2000", "Bachelor1990", "Bachelor2000")
@@ -117,75 +168,47 @@ Education <- Education %>%
 
 ```
 
+To merge the datasets, the full_join() function is applied. This function is appropriate because it performs an outer join, retaining all observations from both datasets based on the specific join keys (e.g., State and Year). Since the distribution dataset includes data for each year from 1990 to 2000, and the Education dataset only includes data for 1990 and 2000, full_join() ensures that no rows are lost during the merge. Missing values are introduced where data is not available in one of the datasets, allowing for a complete and allinged structure for subsequent analysis. After the merge, all numeric values are rounded to two decimals.
+
 ```{r}
-Allmerged <- Distribution %>%
+Inequality <- Distribution %>%
   full_join(Education, by = c("State", "Year"))
 
-Allmerged <- Allmerged %>%
-  select(-st.x, -st.y) %>%   
+Inequality <- Inequality %>%
+  select(-st) %>%
   mutate(across(where(is.numeric), ~ round(.x, 2)))
-
-
 ```
 
-To measure inequality: top 10% divided by bottom 90%.Not an ideal measuring, but we don't have more data on the distribution if income.
+## 3.2 Creating new variables
+
+To measure income inequality, a new variable is constructed, modeled after the Palma Ratio. This ratio is defined as "the ratio of the income share of the top 10 percent over that of the bottom 40 percent" (Basu & Stiglitz, 2016, p. xxvi), and is designed to capture inequality at the extremes of the income distribution. However, the Distribution dataset does not include the income share of the bottom 40 percent. Therefore, as a practical and intuitive alternative, inequality is measured by dividing the income share of the top 10 percent by that of the bottom 90 percent (i.e., 100% minus the top 10%). 
+
+Using this measure, inequality will be visualized over time by presenting the mean and median values of all U.S. states. This visualization provides a broad overview of the national trend in inequality across the country, showing whether inequality is generally increasing or decreasing over time.
+
+Additionally, a second new variable groups states into four categories - Low, Medium Low, Medium High, and High - based on the percentage of the population with a bachelor's degree or higher, allowing inequality to be examined across sub-populations. This approach helps reveal whether states with a higher share of highly educated residents tend to have a higher or lower inequality. 
+
+Finally, inequality will be visualized across the 50 states through a third new variable that shows the absolute change in inequality between 1990 and 2000. Not all states experience inequality changes equally; some show significant increases while others remain stable. This variation can be attributed to factors such as local institutions, tax policies, or demographic shifts (Wei, 2015; Arcabic et al., 2021).
+
 
 ```{r}
-Allmerged <- Allmerged %>%
+Inequality <- Inequality %>%
   mutate(Top10_vs_bottom90 = round(Top10_adj/(100-Top10_adj), 2))
 ```
 
-##3.2 Spatial variation of change in income inequality
 ```{r}
-# Make sure these packages are installed and loaded
-library(dplyr)
-library(tidyr)
-library(maps)
-library(ggplot2)
+Inequality <- Inequality %>%
+  group_by(Year) %>%
+  mutate(Quartile = ntile(Bachelor, 4), Bachelor_level = case_when(Quartile == 1 ~ "Low", Quartile == 2 ~ "Medium Low", Quartile == 3 ~ "Medium High",Quartile == 4 ~ "High"))
 
-diff_data <- Allmerged %>%
-  filter(Year %in% c(1990, 2000)) %>%
-  select(State, Year, Top10_vs_bottom90) %>%
-  pivot_wider(names_from = Year, values_from = Top10_vs_bottom90) %>%
-  mutate(
-    # Extract only the real state name before any dots or extra characters
-    state_lower = tolower(gsub("^([a-zA-Z ]+).*", "\\1", State)),
-    state_lower = trimws(state_lower),
-    diff = `2000` - `1990`
-  ) %>%
-  filter(state_lower != "district of columbia")
-
-us_states <- map_data("state")
-map_plot_data <- left_join(us_states, diff_data, by = c("region" = "state_lower"))
-
-# Check: should now match!
-print(setdiff(sort(unique(us_states$region)), sort(unique(diff_data$state_lower))))
-print(setdiff(sort(unique(diff_data$state_lower)), sort(unique(us_states$region))))
-
-ggplot(map_plot_data, aes(long, lat, group = group, fill = diff)) +
-  geom_polygon(color = "white") +
-  coord_fixed(1.3) +
-  scale_fill_gradient2(
-    low = "blue", mid = "white", high = "red", midpoint = 0,
-    name = "Difference\n(2000 - 1990)"
-  ) +
-  labs(
-    title = "Change in Income Inequality by State",
-    subtitle = "Top 10% vs Bottom 90% (2000 - 1990)"
-  ) +
-  theme_minimal() +
-  theme(
-    axis.text = element_blank(),
-    axis.title = element_blank(),
-    panel.grid = element_blank()
-  )
+# Make sure Education is a factor with the right order
+Inequality$Bachelor_level <- factor(
+  Inequality$Bachelor_level,
+  levels = c("Low", "Medium Low", "Medium High", "High"))
 ```
 
-
-
-##3.3 Temporal visualization of income inequality
-```{r}
-df_summary <- Allmerged %>%
+## 3.3 Temporal Variation
+```{r echo=FALSE}
+df_summary <- Inequality %>%
   group_by(Year) %>%
   summarise(median_ineq = median(Top10_vs_bottom90),
             mean_ineq = mean(Top10_vs_bottom90))
@@ -206,50 +229,89 @@ ggplot(df_summary, aes(x = Year)) +
   scale_y_continuous(breaks = seq(0.5, 0.8, by = 0.02)) +
   theme_minimal(base_size = 14) +
   theme(plot.title = element_text(hjust = 0.5, face = "bold"),
-    plot.subtitle = element_text(hjust = 0.5))
-
+        plot.subtitle = element_text(hjust = 0.5))  
 
 ```
 
-##3.4 To visualize income inequality across different percentages of bachelor's degree, we divide them into quartiles.
-```{r}
+## 3.4 Sub-population Variation
+```{r echo=FALSE}
 library(ggplot2)
 
-#Create quartile-based education groups per year
-Allmerged <- Allmerged %>%
-  group_by(Year) %>%
-  mutate(Quartile = ntile(Bachelor, 4),
-         Bachelor_level = case_when(
-           Quartile == 1 ~ "Low",
-           Quartile == 2 ~ "Medium Low",
-           Quartile == 3 ~ "Medium High",
-           Quartile == 4 ~ "High"
-         ))
-Allmerged <- Allmerged %>%
-  mutate(Quartile = NULL)
 
-# Make sure Education is a factor with the right order
-Allmerged$Bachelor_level <- factor(
-  Allmerged$Bachelor_level,
-  levels = c("Low", "Medium Low", "Medium High", "High")
-)
-
-#We can use indexing or create new dataframes for 1990 and 2000 to create boxplots per year
-library(ggplot2)
-
-ggplot(data = Allmerged[Allmerged$Year == 1990, ], aes(x = Bachelor_level, y = Top10_vs_bottom90)) +
-  geom_boxplot() +
+ggplot(data = Inequality[Inequality$Year == 2000, ],
+       aes(x = Bachelor_level, y = Top10_vs_bottom90)) +
+  geom_boxplot(fill = "lightblue", color = "black", width = 0.6, outlier.shape = 16, outlier.color = "gray40") +
   labs(
-    x = "\nEducation Group (Based on Bachelor % Quartiles)",
-    y = "Income Inequality (Top 10% vs Bottom 90%)\n",
-    title = "Effect of Education Level on Income Inequality"
+    x = "\nEducation Group (Based on % with Bachelor's Degree)",
+    y = "Income Inequality\n(Top 10% vs Bottom 90%)\n",
+    title = "Income Inequality by Education Level (Year 2000)"
+  ) + 
+   theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    axis.title.x = element_text(margin = margin(t = 10)),
+    axis.title.y = element_text(margin = margin(r = 10)),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor = element_blank()
   )
 
 ```
 
-##3.5 Event analysis
-```{r}
-df_summary <- Allmerged %>%
+## 3.5 Spatial Variation
+```{r include=FALSE}
+# Make sure these packages are installed and loaded
+library(maps)
+
+
+diff_data <- Inequality %>%
+  filter(Year %in% c(1990, 2000)) %>%
+  select(State, Year, Top10_vs_bottom90) %>%
+  pivot_wider(names_from = Year, values_from = Top10_vs_bottom90) %>%
+  mutate(
+    # Extract only the real state name before any dots or extra characters
+    state_lower = tolower(gsub("^([a-zA-Z ]+).*", "\\1", State)),
+    state_lower = trimws(state_lower),
+    diff = `2000` - `1990`
+  ) %>%
+  filter(state_lower != "district of columbia")
+
+us_states <- map_data("state")
+map_plot_data <- left_join(us_states, diff_data, by = c("region" = "state_lower"))
+```
+
+```{r include=FALSE}
+# Check: should now match!
+print(setdiff(sort(unique(us_states$region)), sort(unique(diff_data$state_lower))))
+print(setdiff(sort(unique(diff_data$state_lower)), sort(unique(us_states$region))))
+```
+
+```{r echo=FALSE}
+
+ggplot(map_plot_data, aes(long, lat, group = group, fill = diff)) +
+  geom_polygon(color = "black") +
+  coord_fixed(1.3) +
+  scale_fill_gradient2(
+    low = "blue", mid = "ivory", high = "red", midpoint = 0,
+    name = "Difference in \nTop 10% vs Bottom 90% ratio\n(1990-2000)",
+    limits = c(-0.2, 0.8)
+  ) +
+  labs(
+    title = "Change in Income Inequality by State",
+    subtitle = "(Top 10% vs Bottom 90%, 1990-2000)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    legend.text.align = 0.6
+  )
+```
+
+
+## 3.5 Event Analysis
+```{r echo=FALSE}
+df_summary <- Inequality %>%
   group_by(Year) %>%
   summarise(median_ineq = median(Top10_vs_bottom90),
             mean_ineq = mean(Top10_vs_bottom90))
@@ -271,23 +333,44 @@ ggplot(df_summary, aes(x = Year)) +
   theme_minimal(base_size = 14) +
   theme(plot.title = element_text(hjust = 0.5, face = "bold"),
     plot.subtitle = element_text(hjust = 0.5)) +
-  geom_vline(xintercept = 1994) +
-  annotate("text", x = 1995, y = 0.76, size = 3, label = "Introduction\nof NAFTA")
+  geom_vline(xintercept = 1994, size = 1.2) +
+  annotate("text", x = 1995, y = 0.77, size = 4, label = "Introduction\nof NAFTA")
 
 ```
-The North American Free Trade Agreement (NAFTA) between the U.S., Mexico, and Canada came into effect in January 1994 with the goal of creating a trilateral trade bloc to increase economic integration, boost trade, and stimulate growth by removing trade barriers and import tariffs. As a result, exports and imports became cheaper, and a significant share of U.S. manufacturing was relocated to Mexico due to lower labor costs (SOURCE).
 
-NAFTA established the world’s largest free trade zone, but not everyone benefited equally. Higher-income groups in the U.S. gained the most, as large corporations experienced increased profits that mainly flowed to shareholders and high-income individuals (This trend explains the rise in the mean income, while the median grew more slowly)(SOURCE).
+In the temporal visualization shows that inequality rose significantly after 1994, which may be linked to the implementation of the North American Free Trade Agreement (NAFTA). NAFTA, established between the U.S., MExico and Canada came into effect in January 1994 with the objective of creating a trilateral trade bloc to increase economic integration, boost
+trade, and stimulate growth by removing trade barriers and import
+tariffs. As a result, exports and imports became cheaper, and a
+significant share of U.S. manufacturing was relocated to Mexico due to
+lower labor costs (SOURCE).
 
-While the NAFTA boosted overall GDP, it disproportionately affected lower-income groups. The United States lost numerous manufacturing jobs (Estimated at 682,900 by 2010) as companies relocated production to Mexico to cut labor costs (Scott, 2011). This acceleration of outsourcing significantly impacted American manufacturing and low-skilled workers. Consequently, some workers saw their income stagnate or decline, whereas individuals in management and high-skill sectors experienced income growth (SOURCE). As a result, income inequality widened, further expanding the gap between the bottom 90 percent and the top earners.
+NAFTA established the world’s largest free trade zone, but not everyone
+benefited equally. Higher-income groups in the U.S. gained the most, as
+large corporations experienced increased profits that mainly flowed to
+shareholders and high-income individuals (This trend explains the rise
+in the mean income, while the median grew more slowly)(SOURCE).
 
-However, it is important to recognize that the rise in income inequality cannot be attributed solely to NAFTA. Factors such as technological advancements, shifts in labor market policies and broader globalization have also played significant roles in driving this trend.
+While the NAFTA boosted overall GDP, it disproportionately affected
+lower-income groups. The United States lost numerous manufacturing jobs
+(Estimated at 682,900 by 2010) as companies relocated production to
+Mexico to cut labor costs (Scott, 2011). This acceleration of
+outsourcing significantly impacted American manufacturing and
+low-skilled workers. Consequently, some workers saw their income
+stagnate or decline, whereas individuals in management and high-skill
+sectors experienced income growth (SOURCE). As a result, income
+inequality widened, further expanding the gap between the bottom 90
+percent and the top earners.
 
-#4 Discussion
+However, it is important to recognize that the rise in income inequality
+cannot be attributed solely to NAFTA. Factors such as technological
+advancements, shifts in labor market policies and broader globalization
+have also played significant roles in driving this trend.
 
-##4.1 Discuss our findings
+# 4 Discussion
 
+## 4.1 Discuss our findings
 
+<<<<<<< HEAD
 #5 Reproductibility
 
 ##5.2 Reference list
@@ -300,8 +383,23 @@ Denk, O., Hagemann, R., Lenain, P., & Somma, V. (2013, May 27). Inequality and p
 Retrieved from https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html
 
 Scott, R. E. (2011, 3 mei). Heading South: U.S.-Mexico trade and job displacement after NAFTA (Briefing Paper #308). Economic Policy Institute. http://www.epi.org/publications/entry/briefing_paper_308/
+=======
+# 5 Reproducibility
+>>>>>>> 03b03c258f6d14f5da713791edda03aa984ea507
 
+## 5.1 Github Repository link
 
+## 5.2 Reference list
 
+Pew Research Center. (2020, January 9). Trends in U.S. income and wealth
+inequality. Pew Research Center. Retrieved from
+<https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/>
 
+Denk, O., Hagemann, R., Lenain, P., & Somma, V. (2013, May 27).
+Inequality and poverty in the United States: Public policies for
+inclusive growth (OECD Working Paper No. 1052). OECD. Retrieved from
+<https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html>
 
+Scott, R. E. (2011, 3 mei). Heading South: U.S.-Mexico trade and job
+displacement after NAFTA (Briefing Paper #308). Economic Policy
+Institute. <http://www.epi.org/publications/entry/briefing_paper_308/>
