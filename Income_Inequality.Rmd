@@ -41,7 +41,7 @@ J.F. Fitzgerald
 
 # 1 Identification of the Social Problem
 
-##1.1 Describe the Social Problem
+## 1.1 Describe the Social Problem
 Income inequality is a serious social issue in the United States. Over the past few decades, the gap between the highest and lowest earners has grown a lot, leading to problems on social, economic, and political levels. This widening gap creates unequal opportunities, adds pressure to communities, and makes it harder for people to succeed in the job market. Education plays an important role in this situation. People with higher levels of education tend to earn more money than those with lower levels of education. But how straightforward is that relationship?
 
 Several well-known sources have pointed out that income inequality is a major concern. The Organisation for Economic Co-operation and Development (OECD) has stated in multiple reports that the U.S. has one of the highest levels of income inequality among developed countries. They also point out that this can slow down economic growth and limit social mobility. The Pew Research Center has also found that income gaps keep growing and that education is a key factor—people without higher education are falling further behind in the labor market. These sources show that income inequality, and the role education plays in it, is a long-term issue that needs real attention.
@@ -62,17 +62,14 @@ The second dataset is “The Educational attainment of persons 25 years old and 
 The limitation of the dataset is that it includes data about only two points in time: April 1990 and April 2000. Unfortunately, there is no data available for the years in between.
 
 ## 2.2 Load in the data
+To load the datasets, a link is provided to a Google Drive folder, from which a ZIP file containing the two datasets can be downloaded.
 ```{r loading data, include=FALSE}
-# Name of the local zip file
 zipfile <- "datasets_to_share.zip"
 
-# Download the zip file
 if (!file.exists(zipfile)) {
   download.file("https://drive.google.com/uc?export=download&id=1TYJDCbxCDWhbZwQ6kkY-RJXtwDgOMdX2",
-                destfile = zipfile, mode = "wb")
-}
+                destfile = zipfile, mode = "wb")}
 
-# Unzip the file into the folder 'datasets_income_inequality'
 unzip(zipfile, exdir = "datasets_income_inequality")
 ```
 
@@ -82,30 +79,6 @@ Distribution <- read_excel("datasets_income_inequality/Frank_WID_2020.xls", shee
 Education <- read_excel("datasets_income_inequality/tabn012.xls", col_types = c("text", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip","skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip"))
 
 ```
-
-## 3.1 Summary of the datasets
-
-## 3.2 Describing the type of variables in the datasets
-
-This is our merged data set. In the first column you can see what year the data refers to. Next to it is the column with the State_ID. We put
-the states in alphabetical order and then started numbering from 1 to 100 (example: Alabama is numbered 1 in 1990 and 51 (1+50) in 2000).
-
-The next 5 columns show the percentages of total income that a group
-earns. For example, the first column shows that the top 10 percent of
-big earners, earn 39.9% of total income, from the state. This is the
-same for the 4 other columns, but here the groups get smaller and
-smaller.
-
-Columns 9 through 14 show how much you have to earn to belong to that
-percentage of big earners. For example, in 1990 you had to earn more
-than \$101,762.24 to be among the top 10 big earners in Alabama. Did you
-want to be among the top 5 in 1990? Then you had to earn more than
-\$131,506.30.
-
-The last two columns show level of education. These variables are in
-percent. So for example, in 1990, 66.9% of the population in Alabama had
-a high school diploma or higher and 15.7% had a bachelor's degree or
-higher.
 
 # 3 Quantifying
 
@@ -169,8 +142,18 @@ Inequality <- Inequality %>%
   mutate(across(where(is.numeric), ~ round(.x, 2)))
 ```
 
-## 3.2 Creating new variables
+## 3.2 Describing the type of variables in the datasets
+```{r}
+head(Inequality)
+```
 
+This is the merged dataset, named "Inequality". The first variable indicates the year (i.e., from 1990 to 2000), and the second column identifies the state from which the data originates. Each state appears eleven times in the dataset - once for every year.
+
+The next five variables represent the percentage of total income earned by specific income groups. For example, the first of these columns shows that the top 10 percent of earners in Alabama in 1990 earned 39.9% of the total income. The following four columns follow the same structure, with each representing increasingly smaller income groups.
+
+The final two columns capture educational attainment levels, expressed in percentages. For instance, in 1990, 66.9% of the population in Alabama had a high school diploma or higher and 15.7% held a bachelor's degree or higher.
+
+## 3.2 Creating new variables
 To measure income inequality, a new variable is constructed, modeled after the Palma Ratio. This ratio is defined as "the ratio of the income share of the top 10 percent over that of the bottom 40 percent" (Basu & Stiglitz, 2016, p. xxvi), and is designed to capture inequality at the extremes of the income distribution. However, the Distribution dataset does not include the income share of the bottom 40 percent. Therefore, as a practical and intuitive alternative, inequality is measured by dividing the income share of the top 10 percent by that of the bottom 90 percent (i.e., 100% minus the top 10%). 
 
 Using this measure, inequality will be visualized over time by presenting the mean and median values of all U.S. states. This visualization provides a broad overview of the national trend in inequality across the country, showing whether inequality is generally increasing or decreasing over time.
@@ -359,9 +342,12 @@ have also played significant roles in driving this trend.
 # 4 Discussion
 
 ## 4.1 Discussion of the findings
-This project has shown that inequality in the US is structural growing and a more urgent social issue. The income share ratio that we constructed shows that there is an increase in inequality between 1990 and 2000. This increase is visible in almost every US state. The largest increases occurred in Massachusetts, California, Arizona, and Nebraska. The changes in inequality may be linked to regional economic factors in specific areas. For example California and Massachusetts had a rapid growth in tech and finance industries during the 1990s, where highly skilled workers (often in the top 10%) were paid significantly more than lower income groups. 
-The analysis that can be made from our dataset is that the income inequality started rising more starting from the year 1994. This year, the Nort American Free Trade Agreement (NAFTA) has been implemented. The goal of NAFTA was to stimulate trade and economic growth, but it this agreement also led to outsourcing to lower-wage countries. Because of this outsourcing, many low-skilled manufacturing job in the US were lost. While the lower class was struggling, high income groups were benefiting from rising corporate profits and stock value. Which is why the inequality started to rise significantly more. 
-The subpopulation, based on the share of people with a bachelor’s degree or higher, showed that states who have a higher education level, often tend to have a greater inequality. The connection between this relation is that highly educated workers have more access to better-paying jobs, which further widens the income gap.
+This project has shown that inequality in the US is structural growing and a more urgent social issue. The income share ratio that we constructed shows that there is an increase in inequality between 1990 and 2000. This increase is visible in almost every US state. The largest increases occurred in Massachusetts, California, Arizona, and Nebraska. The changes in inequality may be linked to regional economic factors in specific areas. For example California and Massachusetts had a rapid growth in tech and finance industries during the 1990s, where highly skilled workers (often in the top 10%) were paid significantly more than lower income groups.
+
+The analysis that can be made from our dataset is that the income inequality started rising more starting from the year 1994. This year (NAFTA) was implemented. The goal of NAFTA was to stimulate trade and economic growth, but this agreement also led to outsourcing to lower-wage countries. Because of this outsourcing, many low-skilled manufacturing job in the US were lost. While the lower class was struggling, high income groups were benefiting from rising corporate profits and stock value. Which is why the inequality started to rise significantly more. 
+
+The sub-population analysis, based on the share of people with a bachelor’s degree or higher, showed that states who have a higher education level, often tend to have greater inequality. The connection between this relation is that highly educated workers have more access to better-paying jobs, which further widens the income gap.
+
 Our analysis shows that inequality is widespread but most prominent in states with higher education levels and following policy shifts such as NAFTA.
 
 
