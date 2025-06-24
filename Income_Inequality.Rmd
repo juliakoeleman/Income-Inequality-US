@@ -1,6 +1,14 @@
 ---
 title: "Education and Inequality: A State-Level Analysis of the U.S. (1990–2000)"
-author: "Carlijn Calori (2860228), Leah Delikát (2813155), Fadhil Dhafir (2847129), Sten Groen (2813781), Julia Koeleman, Anne Schrama (2812834), Marie-Louise Stevens (2814083), Sophia Zentgraf (2853242)"
+author:  
+  - Carlijn Calori (2860228)
+  - Leah Delikát (2813155)
+  - Fadhil Dhafir (2847129)
+  - Sten Groen (2813781)
+  - Julia Koeleman (xxx)
+  - Anne Schrama (2812834)
+  - Marie-Louise Stevens (2814083)
+  - Sophia Zentgraf (2853242)
 date: "`r Sys.Date()`"
 output: pdf_document
 ---
@@ -179,6 +187,7 @@ Inequality$Bachelor_level <- factor(
 ```
 
 ## 3.3 Temporal Variation
+
 ```{r echo=FALSE}
 df_summary <- Inequality %>%
   group_by(Year) %>%
@@ -204,9 +213,11 @@ ggplot(df_summary, aes(x = Year)) +
         plot.subtitle = element_text(hjust = 0.5))  
 
 ```
+
 The graph illustrates the development of income inequality in the United States from 1990 to 2000, using the ratio between the income share of the top 10 percent and the bottom 90 percent. Both the median (blue) and mean (red) values show a clear upward trend over time, with a notable acceleration after 1994. The increasing gap between mean and median also suggest that the highest earners experienced disproportionate income growth compared to the general population.
 
 ## 3.4 Sub-population Variation
+
 ```{r echo=FALSE}
 library(ggplot2)
 
@@ -229,10 +240,11 @@ ggplot(data = Inequality[Inequality$Year == 2000, ],
   )
 
 ```
+
 The box-and-whisker plot displays income inequality in the year 2000 across four groups of states, categorized by the percentage of the population with a bachelor's degree or higher. The results show a positive correlation: states with a higher level of educational attainment tend to exhibit greater income inequality. This suggests that while higher education leads to better-paying jobs, it also contributes to a wider income gap, as the earnings of highly educated individuals pull away from those with lower education levels.
 
-
 ## 3.5 Spatial Variation
+
 ```{r include=FALSE}
 # Make sure these packages are installed and loaded
 library(maps)
@@ -282,11 +294,13 @@ ggplot(map_plot_data, aes(long, lat, group = group, fill = diff)) +
     legend.text = element_text(hjust = 0.6)
   )
 ```
+
 The spatial variation graph shows the change in income inequality between 1990 and 2000 across all U.S. states, measured by the Top10_vs_bottom90 ratio. Most states experienced an increase in inequality, though the magnitude of change varies. The most significant increases are observed in states such as Massachusetts, California, and Arizona, indicating that regional economic developments may have amplified income disparities. Conversely, several Midwestern and Southern states show smaller changes, and a few appear relatively stable or even slightly declining.
 
 This map effectively highlights regional disparities, allowing for geographic patterns in inequality growth to become visible. However, the use of a continuous color gradient lacks categorical thresholds, making it harder to distinguish what constitutes a mild versus a substantial increase in inequality. For example, grouping values into low, medium, and high changes could make regional patterns more interpretable. Additionally adding regional labels or reference zones ("Northeast", "Southwest", etc) could further support spatial variation.
 
 ## 3.5 Event Analysis
+
 ```{r echo=FALSE}
 df_summary <- Inequality %>%
   group_by(Year) %>%
@@ -314,6 +328,7 @@ ggplot(df_summary, aes(x = Year)) +
   annotate("text", x = 1995, y = 0.77, size = 4, label = "Introduction\nof NAFTA")
 
 ```
+
 The temporal visualization shows that inequality rose significantly after 1994, coinciding with the implementation of the North American Free Trade Agreement (NAFTA). NAFTA, established between the U.S., Mexico and Canada, came into effect in January 1994, aiming to boost trade and economic integration by removing trade barriers and import tariffs (Floyd, 2025). As a result, exports and imports became cheaper, and a significant share of U.S. manufacturing was relocated to Mexico due to lower labor costs (Scott, 2011).
 
 While NAFTA established the world’s largest free trade zone, the benefits were uneven. Higher-income groups gained the most, as corporate profits increased and primarily flowed to shareholders and high-income individuals (This trend explains the rise in the mean income, while the median grew more slowly).
