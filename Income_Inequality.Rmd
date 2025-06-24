@@ -32,7 +32,6 @@ packageVersion("dplyr")
 packageVersion("readxl")
 ```
 
-<<<<<<< HEAD
 #Title Page
 Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen, Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
 
@@ -40,7 +39,7 @@ Tutorial: Group 1
 
 J.F. Fitzgerald
 
-#Part 1 - Identification of the Social Problem
+# 1 Identification of the Social Problem
 
 ##1.1 Describe the Social Problem
 Income inequality is a serious social issue in the United States. Over the past few decades, the gap between the highest and lowest earners has grown a lot, leading to problems on social, economic, and political levels. This widening gap creates unequal opportunities, adds pressure to communities, and makes it harder for people to succeed in the job market. Education plays an important role in this situation. People with higher levels of education tend to earn more money than those with lower levels of education. But how straightforward is that relationship?
@@ -49,29 +48,20 @@ Several well-known sources have pointed out that income inequality is a major co
 
 Even though this topic has been researched before, our project takes a closer look than many past studies. We focus on differences between U.S. states to see how the link between education and income changes from one region to another. By doing this, we can offer a more detailed and complete picture of income inequality. With this more in-depth analysis, we hope to find new insights that haven’t been explored in other research.
 
-=======
-#Title Page Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen,
-Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
-Tutorial: Group 1 J.F. Fitzgerald
-
-#Part 1 - Identification of the Social Problem
-
-##1.1 Describe the Social Problem Income inequality in the USA is a
-social problem because it limits equal opportunities, increases social
-tensions, and harms health and democracy.The Pew Research Center warns
-that the middle class is shrinking rapidly, while the rich grow
-richer.In addition, The OECD ranks the U.S. among the most unequal
-developed nations. These two studies emphasize the importance of this
-problem ABCDEF.
 
 <https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/>?
 <https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html>
 
-# Part 2: Data Sourcing
->>>>>>> 03b03c258f6d14f5da713791edda03aa984ea507
+# 2 Data Sourcing
 
-## 2.1 Load in the data
+## 2.1 Description and limitations 
+The dataset “Inequality and Growth in the United States: Evidence from a New State-Level Panel of Income Inequality Measure” of the researcher Frank has been used for our project. This dataset provides historical coverage (1990-2000) of the highest income group in the US. Another reason why this data set has been used is because it specifically shows the top income groups per state. This way, the differences per state can be easily compared to one another. The dataset shows multiple variables that can measure inequality. 
+The data is not from a government website, but from a researcher himself. However, the researcher did use data from the World Inequality Database to calculate the different top income groups. The limitation of this dataset is that it only provides the top income percentages, so there is not a possibility to compare the bottom 10 percent with the top 10, which makes it harder to accurately measure inequality.
 
+The second dataset is “The Educational attainment of persons 25 years old and over, by race/ethnicity and state: April 1990 and April 2000”. This dataset focuses on education level and has been retrieved from the National Center form Education Statistics (NCES). We chose this dataset because the level of education is a key indicator of inequality. The higher the education, the higher the income. Therefore big differences between education level will lead to a greater inequality. Furthermore, the dataset specifies the education level across all U.S. states. Which we can combine with the dataset of the top income percentages. Differences across racial and ethnic groups are also shown in the data, but will not be considered here, as they fall outside the scope of this analysis.
+The limitation of the dataset is that it includes data about only two points in time: April 1990 and April 2000. Unfortunately, there is no data available for the years in between.
+
+## 2.2 Load in the data
 ```{r loading data, include=FALSE}
 # Name of the local zip file
 zipfile <- "datasets_to_share.zip"
@@ -117,7 +107,7 @@ percent. So for example, in 1990, 66.9% of the population in Alabama had
 a high school diploma or higher and 15.7% had a bachelor's degree or
 higher.
 
-# Part 3: Quantifying
+# 3 Quantifying
 
 ## 3.1 Data Cleaning
 
@@ -338,7 +328,7 @@ ggplot(df_summary, aes(x = Year)) +
 
 ```
 
-In the temporal visualization shows that inequality rose significantly after 1994, which may be linked to the implementation of the North American Free Trade Agreement (NAFTA). NAFTA, established between the U.S., MExico and Canada came into effect in January 1994 with the objective of creating a trilateral trade bloc to increase economic integration, boost
+The temporal visualization shows that inequality rose significantly after 1994, which may be linked to the implementation of the North American Free Trade Agreement (NAFTA). NAFTA, established between the U.S., MExico and Canada came into effect in January 1994 with the objective of creating a trilateral trade bloc to increase economic integration, boost
 trade, and stimulate growth by removing trade barriers and import
 tariffs. As a result, exports and imports became cheaper, and a
 significant share of U.S. manufacturing was relocated to Mexico due to
@@ -368,22 +358,15 @@ have also played significant roles in driving this trend.
 
 # 4 Discussion
 
-## 4.1 Discuss our findings
+## 4.1 Discussion of the findings
+This project has shown that inequality in the US is structural growing and a more urgent social issue. The income share ratio that we constructed shows that there is an increase in inequality between 1990 and 2000. This increase is visible in almost every US state. The largest increases occurred in Massachusetts, California, Arizona, and Nebraska. The changes in inequality may be linked to regional economic factors in specific areas. For example California and Massachusetts had a rapid growth in tech and finance industries during the 1990s, where highly skilled workers (often in the top 10%) were paid significantly more than lower income groups. 
+The analysis that can be made from our dataset is that the income inequality started rising more starting from the year 1994. This year, the Nort American Free Trade Agreement (NAFTA) has been implemented. The goal of NAFTA was to stimulate trade and economic growth, but it this agreement also led to outsourcing to lower-wage countries. Because of this outsourcing, many low-skilled manufacturing job in the US were lost. While the lower class was struggling, high income groups were benefiting from rising corporate profits and stock value. Which is why the inequality started to rise significantly more. 
+The subpopulation, based on the share of people with a bachelor’s degree or higher, showed that states who have a higher education level, often tend to have a greater inequality. The connection between this relation is that highly educated workers have more access to better-paying jobs, which further widens the income gap.
+Our analysis shows that inequality is widespread but most prominent in states with higher education levels and following policy shifts such as NAFTA.
 
-<<<<<<< HEAD
-#5 Reproductibility
 
-##5.2 Reference list
-Pew Research Center. (2020, January 9). Trends in U.S. income and wealth inequality. Pew Research Center.
-Retrieved from https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/
 
-Denk, O., Hagemann, R., Lenain, P., & Somma, V. (2013, May 27). Inequality and poverty in the United States: Public policies for inclusive growth (OECD Working Paper No. 1052). OECD.
-Retrieved from https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html
-
-Scott, R. E. (2011, 3 mei). Heading South: U.S.-Mexico trade and job displacement after NAFTA (Briefing Paper #308). Economic Policy Institute. http://www.epi.org/publications/entry/briefing_paper_308/
-=======
-# 5 Reproducibility
->>>>>>> 03b03c258f6d14f5da713791edda03aa984ea507
+# 5 Reproductibility
 
 ## 5.1 Github Repository link
 

@@ -101,134 +101,104 @@
 \urlstyle{same}
 \hypersetup{
   pdftitle={The Effect of Education Level on Income Inequality},
-  pdfauthor={Names + Studentnumbers},
+  pdfauthor={Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen, Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 \title{The Effect of Education Level on Income Inequality}
-\author{Names + Studentnumbers}
-\date{2025-06-20}
+\author{Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen, Julia
+Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf}
+\date{2025-06-24}
 
 \begin{document}
 \maketitle
 
 \#Set up your environment
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{setwd}\NormalTok{(}\StringTok{"\textasciitilde{}/"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-## v dplyr     1.1.4     v readr     2.1.5
-## v forcats   1.0.0     v stringr   1.5.1
-## v ggplot2   3.5.2     v tibble    3.2.1
-## v lubridate 1.9.4     v tidyr     1.3.1
-## v purrr     1.0.4     
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(renv)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'renv'
-## 
-## The following object is masked from 'package:purrr':
-## 
-##     modify
-## 
-## The following objects are masked from 'package:stats':
-## 
-##     embed, update
-## 
-## The following objects are masked from 'package:utils':
-## 
-##     history, upgrade
-## 
-## The following objects are masked from 'package:base':
-## 
-##     autoload, load, remove
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(dplyr)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{packageVersion}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] '2.0.0'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{packageVersion}\NormalTok{(}\StringTok{"renv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] '1.1.4'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{packageVersion}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] '1.1.4'
-\end{verbatim}
-
 \#Title Page Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen,
 Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
-Tutorial Group 1 J.F. Fitzgerald
 
-\#Part 1 - Identification of the Social Problem
+Tutorial: Group 1
 
-\#\#1.1 Describe the Social Problem Income inequality in the USA is a
-social problem because it limits equal opportunities, increases social
-tensions, and harms health and democracy.The Pew Research Center warns
-that the middle class is shrinking rapidly, while the rich grow
-richer.In addition, The OECD ranks the U.S. among the most unequal
-developed nations. These two studies emphasize the importance of this
-problem ABCDEF.
+J.F. Fitzgerald
+
+\section{1 Identification of the Social
+Problem}\label{identification-of-the-social-problem}
+
+\#\#1.1 Describe the Social Problem Income inequality is a serious
+social issue in the United States. Over the past few decades, the gap
+between the highest and lowest earners has grown a lot, leading to
+problems on social, economic, and political levels. This widening gap
+creates unequal opportunities, adds pressure to communities, and makes
+it harder for people to succeed in the job market. Education plays an
+important role in this situation. People with higher levels of education
+tend to earn more money than those with lower levels of education. But
+how straightforward is that relationship?
+
+Several well-known sources have pointed out that income inequality is a
+major concern. The Organisation for Economic Co-operation and
+Development (OECD) has stated in multiple reports that the U.S. has one
+of the highest levels of income inequality among developed countries.
+They also point out that this can slow down economic growth and limit
+social mobility. The Pew Research Center has also found that income gaps
+keep growing and that education is a key factor---people without higher
+education are falling further behind in the labor market. These sources
+show that income inequality, and the role education plays in it, is a
+long-term issue that needs real attention.
+
+Even though this topic has been researched before, our project takes a
+closer look than many past studies. We focus on differences between U.S.
+states to see how the link between education and income changes from one
+region to another. By doing this, we can offer a more detailed and
+complete picture of income inequality. With this more in-depth analysis,
+we hope to find new insights that haven't been explored in other
+research.
 
 \url{https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/}?
 \url{https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html}
 
-\#Part 2 - Data Sourcing
+\section{2 Data Sourcing}\label{data-sourcing}
 
-\#\#2.1 Load in Data
+\subsection{2.1 Description and
+limitations}\label{description-and-limitations}
+
+The dataset ``Inequality and Growth in the United States: Evidence from
+a New State-Level Panel of Income Inequality Measure'' of the researcher
+Frank has been used for our project. This dataset provides historical
+coverage (1990-2000) of the highest income group in the US. Another
+reason why this data set has been used is because it specifically shows
+the top income groups per state. This way, the differences per state can
+be easily compared to one another. The dataset shows multiple variables
+that can measure inequality. The data is not from a government website,
+but from a researcher himself. However, the researcher did use data from
+the World Inequality Database to calculate the different top income
+groups. The limitation of this dataset is that it only provides the top
+income percentages, so there is not a possibility to compare the bottom
+10 percent with the top 10, which makes it harder to accurately measure
+inequality.
+
+The second dataset is ``The Educational attainment of persons 25 years
+old and over, by race/ethnicity and state: April 1990 and April 2000''.
+This dataset focuses on education level and has been retrieved from the
+National Center form Education Statistics (NCES). We chose this dataset
+because the level of education is a key indicator of inequality. The
+higher the education, the higher the income. Therefore big differences
+between education level will lead to a greater inequality. Furthermore,
+the dataset specifies the education level across all U.S. states. Which
+we can combine with the dataset of the top income percentages.
+Differences across racial and ethnic groups are also shown in the data,
+but will not be considered here, as they fall outside the scope of this
+analysis. The limitation of the dataset is that it includes data about
+only two points in time: April 1990 and April 2000. Unfortunately, there
+is no data available for the years in between.
+
+\subsection{2.2 Load in the data}\label{load-in-the-data}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(readxl)}
-\NormalTok{Distribution }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"data/Frank\_WID\_2020.xls"}\NormalTok{, }\AttributeTok{sheet =} \DecValTok{3}\NormalTok{)}
-\NormalTok{Thresholds }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"data/Frank\_WID\_2020.xls"}\NormalTok{, }\AttributeTok{sheet =} \DecValTok{4}\NormalTok{)}
-\NormalTok{Education }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"data/tabn012.xls"}\NormalTok{, }\AttributeTok{col\_types =} \FunctionTok{c}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{,}\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{))}
+\CommentTok{\#Load the files}
+\NormalTok{Distribution }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"datasets\_income\_inequality/Frank\_WID\_2020.xls"}\NormalTok{, }\AttributeTok{sheet =} \DecValTok{3}\NormalTok{)}
+\NormalTok{Education }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"datasets\_income\_inequality/tabn012.xls"}\NormalTok{, }\AttributeTok{col\_types =} \FunctionTok{c}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{,}\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{, }\StringTok{"skip"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -240,81 +210,10 @@ problem ABCDEF.
 ## * `` -> `...5`
 \end{verbatim}
 
-\#\#2.2 Clean the data sets
+\subsection{3.1 Summary of the datasets}\label{summary-of-the-datasets}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Distribution }\OtherTok{\textless{}{-}}\NormalTok{ Distribution }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(Year }\SpecialCharTok{\%in\%} \DecValTok{1990}\SpecialCharTok{:}\DecValTok{2000}\NormalTok{, }
-\NormalTok{         State }\SpecialCharTok{!=} \FunctionTok{c}\NormalTok{(}\StringTok{"United States"}\NormalTok{, }\StringTok{"District of Columbia"}\NormalTok{))}
-
-\NormalTok{Thresholds }\OtherTok{\textless{}{-}}\NormalTok{ Thresholds }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(Year }\SpecialCharTok{\%in\%} \DecValTok{1990}\SpecialCharTok{:}\DecValTok{2000}\NormalTok{, }
-\NormalTok{         State }\SpecialCharTok{!=} \FunctionTok{c}\NormalTok{(}\StringTok{"United States"}\NormalTok{, }\StringTok{"District of Columbia"}\NormalTok{))}
-
-\NormalTok{Education }\OtherTok{\textless{}{-}}\NormalTok{ Education[ }\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{13}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{26}\NormalTok{, }\DecValTok{32}\NormalTok{, }\DecValTok{38}\NormalTok{, }\DecValTok{44}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{56}\NormalTok{, }\DecValTok{62}\NormalTok{, }\DecValTok{68}\NormalTok{, }\DecValTok{75}\SpecialCharTok{:}\DecValTok{79}\NormalTok{), ]}
-
-\FunctionTok{names}\NormalTok{(Education)[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"State"}\NormalTok{, }\StringTok{"Highschool1990"}\NormalTok{, }\StringTok{"Highschool2000"}\NormalTok{, }\StringTok{"Bachelor1990"}\NormalTok{, }\StringTok{"Bachelor2000"}\NormalTok{)}
-
-\NormalTok{Education }\OtherTok{\textless{}{-}}\NormalTok{ Education }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{State =}\NormalTok{ State }\SpecialCharTok{\%\textgreater{}\%}
-           \FunctionTok{str\_replace\_all}\NormalTok{(}\StringTok{"…+"}\NormalTok{, }\StringTok{""}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-           \FunctionTok{str\_replace\_all}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.+"}\NormalTok{, }\StringTok{""}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-           \FunctionTok{str\_trim}\NormalTok{()) }\CommentTok{\# to delete all the dots after the state name}
-\end{Highlighting}
-\end{Shaded}
-
-\#\#2.3 Reshape the Education dataset to the same form as the others so
-you have a variable Year
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df1990 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{State =}\NormalTok{ Education}\SpecialCharTok{$}\NormalTok{State, }\AttributeTok{Year =} \DecValTok{1990}\NormalTok{, }\AttributeTok{Highschool =}\NormalTok{ Education}\SpecialCharTok{$}\NormalTok{Highschool1990, }\AttributeTok{Bachelor =}\NormalTok{ Education}\SpecialCharTok{$}\NormalTok{Bachelor1990, }\AttributeTok{stringsAsFactors =} \ConstantTok{FALSE}\NormalTok{)}
-
-\NormalTok{df2000 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{State =}\NormalTok{ Education}\SpecialCharTok{$}\NormalTok{State,}\AttributeTok{Year =} \DecValTok{2000}\NormalTok{,}\AttributeTok{Highschool =}\NormalTok{ Education}\SpecialCharTok{$}\NormalTok{Highschool2000,}\AttributeTok{Bachelor =}\NormalTok{ Education}\SpecialCharTok{$}\NormalTok{Bachelor2000,}\AttributeTok{stringsAsFactors =} \ConstantTok{FALSE}\NormalTok{)}
-
-\NormalTok{Education }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(df1990, df2000)}
-
-\NormalTok{Education }\OtherTok{\textless{}{-}}\NormalTok{ Education }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\DecValTok{3}\SpecialCharTok{:}\DecValTok{4}\NormalTok{, }\SpecialCharTok{\textasciitilde{}} \FunctionTok{as.numeric}\NormalTok{(.)))}
-\end{Highlighting}
-\end{Shaded}
-
-\#\#2.4 To merge the datasets
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Allmerged }\OtherTok{\textless{}{-}}\NormalTok{ Distribution }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{inner\_join}\NormalTok{(Thresholds, }\AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\StringTok{"State"}\NormalTok{, }\StringTok{"Year"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{full\_join}\NormalTok{(Education, }\AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\StringTok{"State"}\NormalTok{, }\StringTok{"Year"}\NormalTok{))}
-
-\NormalTok{Allmerged }\OtherTok{\textless{}{-}}\NormalTok{ Allmerged }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{st.x, }\SpecialCharTok{{-}}\NormalTok{st.y) }\SpecialCharTok{\%\textgreater{}\%}   
-  \FunctionTok{mutate}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\FunctionTok{where}\NormalTok{(is.numeric), }\SpecialCharTok{\textasciitilde{}} \FunctionTok{round}\NormalTok{(.x, }\DecValTok{2}\NormalTok{)))}
-\end{Highlighting}
-\end{Shaded}
-
-\#\#2.5 Short summary of dataset
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{head}\NormalTok{(Allmerged)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 6 x 16
-##    Year State  Top10_adj Top5_adj Top1_adj Top05_adj Top01_adj Top001_adj    y90
-##   <dbl> <chr>      <dbl>    <dbl>    <dbl>     <dbl>     <dbl>      <dbl>  <dbl>
-## 1  1990 Alaba~      39.9     26.0     12.4      9.1       4.74       1.78 1.02e5
-## 2  1990 Alaska      34.0     22.7     11.2      8.74      4.93       2.15 1.56e5
-## 3  1990 Arizo~      38.9     26.5     12.3      9.25      4.56       1.64 1.11e5
-## 4  1990 Arkan~      38.2     25.6     12.4      8.84      4.72       1.8  9.18e4
-## 5  1990 Calif~      42.8     30.6     16.6     12.5       6.82       2.84 1.31e5
-## 6  1990 Color~      36.4     25.4     12.0      9.16      4.74       1.82 1.20e5
-## # i 7 more variables: y95 <dbl>, y99 <dbl>, y995 <dbl>, y999 <dbl>,
-## #   y9999 <dbl>, Highschool <dbl>, Bachelor <dbl>
-\end{verbatim}
+\subsection{3.2 Describing the type of variables in the
+datasets}\label{describing-the-type-of-variables-in-the-datasets}
 
 This is our merged data set. In the first column you can see what year
 the data refers to. Next to it is the column with the State\_ID. We put
@@ -338,224 +237,266 @@ percent. So for example, in 1990, 66.9\% of the population in Alabama
 had a high school diploma or higher and 15.7\% had a bachelor's degree
 or higher.
 
-\textless\textless\textless\textless\textless\textless\textless{} HEAD
+\section{3 Quantifying}\label{quantifying}
 
-\#Part 3 - Quantifying
+\subsection{3.1 Data Cleaning}\label{data-cleaning}
 
-\#\#3.1 Generating necessary variables
+Only the years 1990 to 2000 are kept in the Distribution dataset. This
+is because the Education dataset includes data only for 1990 and 2000.
+To ensure the datasets can be merged and compared properly, just 1990,
+2000, and the years in between are included.
 
-To measure inequality: top 10\% divided by bottom 90\%.Not an ideal
-measuring, but we don't have more data on the distribution if income.
+In addition, two rows are removed, as they are not a U.S. state. One of
+the rows corresponds to the entire United States, while the other
+represents the District of Columbia.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Allmerged }\OtherTok{\textless{}{-}}\NormalTok{ Allmerged }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{Distribution }\OtherTok{\textless{}{-}}\NormalTok{ Distribution }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(Year }\SpecialCharTok{\%in\%} \DecValTok{1990}\SpecialCharTok{:}\DecValTok{2000}\NormalTok{, }
+\NormalTok{         State }\SpecialCharTok{!=} \FunctionTok{c}\NormalTok{(}\StringTok{"United States"}\NormalTok{, }\StringTok{"District of Columbia"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+For the Education dataset, unnecessary rows are removed. These rows
+contain no data and consist only of blank spaces between entries. Also,
+two rows representing the entire United States and the District of
+Columbia are removed.
+
+To simplify the datatset, columns are renamed to reflect the type of
+data they contain, and any dots following state names are removed.
+
+For the final step of cleaning, before merging the two datasets, the
+Education dataset needs to be converted to a long format. Currently, it
+contains four separate variables for the years 1990 and 2000, but these
+need to be combined into a single column with the years listed
+vertically. This transformation allows the dataset to be merged properly
+with the Distribution dataset, which is already in long format.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Education }\OtherTok{\textless{}{-}}\NormalTok{ Education[ }\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{13}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{26}\NormalTok{, }\DecValTok{32}\NormalTok{, }\DecValTok{38}\NormalTok{, }\DecValTok{44}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{56}\NormalTok{, }\DecValTok{62}\NormalTok{, }\DecValTok{68}\NormalTok{, }\DecValTok{75}\SpecialCharTok{:}\DecValTok{79}\NormalTok{), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(Education)[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"State"}\NormalTok{, }\StringTok{"Highschool1990"}\NormalTok{, }\StringTok{"Highschool2000"}\NormalTok{, }\StringTok{"Bachelor1990"}\NormalTok{, }\StringTok{"Bachelor2000"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Education }\OtherTok{\textless{}{-}}\NormalTok{ Education }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{State =}\NormalTok{ State }\SpecialCharTok{\%\textgreater{}\%}
+           \FunctionTok{str\_replace\_all}\NormalTok{(}\StringTok{"…+"}\NormalTok{, }\StringTok{""}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+           \FunctionTok{str\_replace\_all}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.+"}\NormalTok{, }\StringTok{""}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+           \FunctionTok{str\_trim}\NormalTok{()) }\CommentTok{\# to delete all the dots after the state }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df1990 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{State =}\NormalTok{ Education}\SpecialCharTok{$}\NormalTok{State, }\AttributeTok{Year =} \DecValTok{1990}\NormalTok{, }\AttributeTok{Highschool =}\NormalTok{ Education}\SpecialCharTok{$}\NormalTok{Highschool1990, }\AttributeTok{Bachelor =}\NormalTok{ Education}\SpecialCharTok{$}\NormalTok{Bachelor1990, }\AttributeTok{stringsAsFactors =} \ConstantTok{FALSE}\NormalTok{)}
+
+\NormalTok{df2000 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{State =}\NormalTok{ Education}\SpecialCharTok{$}\NormalTok{State,}\AttributeTok{Year =} \DecValTok{2000}\NormalTok{,}\AttributeTok{Highschool =}\NormalTok{ Education}\SpecialCharTok{$}\NormalTok{Highschool2000,}\AttributeTok{Bachelor =}\NormalTok{ Education}\SpecialCharTok{$}\NormalTok{Bachelor2000,}\AttributeTok{stringsAsFactors =} \ConstantTok{FALSE}\NormalTok{)}
+
+\NormalTok{Education }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(df1990, df2000)}
+
+\NormalTok{Education }\OtherTok{\textless{}{-}}\NormalTok{ Education }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\DecValTok{3}\SpecialCharTok{:}\DecValTok{4}\NormalTok{, }\SpecialCharTok{\textasciitilde{}} \FunctionTok{as.numeric}\NormalTok{(.)))}
+\end{Highlighting}
+\end{Shaded}
+
+To merge the datasets, the full\_join() function is applied. This
+function is appropriate because it performs an outer join, retaining all
+observations from both datasets based on the specific join keys (e.g.,
+State and Year). Since the distribution dataset includes data for each
+year from 1990 to 2000, and the Education dataset only includes data for
+1990 and 2000, full\_join() ensures that no rows are lost during the
+merge. Missing values are introduced where data is not available in one
+of the datasets, allowing for a complete and allinged structure for
+subsequent analysis. After the merge, all numeric values are rounded to
+two decimals.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Inequality }\OtherTok{\textless{}{-}}\NormalTok{ Distribution }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{full\_join}\NormalTok{(Education, }\AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\StringTok{"State"}\NormalTok{, }\StringTok{"Year"}\NormalTok{))}
+
+\NormalTok{Inequality }\OtherTok{\textless{}{-}}\NormalTok{ Inequality }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{st) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\FunctionTok{where}\NormalTok{(is.numeric), }\SpecialCharTok{\textasciitilde{}} \FunctionTok{round}\NormalTok{(.x, }\DecValTok{2}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{3.2 Creating new variables}\label{creating-new-variables}
+
+To measure income inequality, a new variable is constructed, modeled
+after the Palma Ratio. This ratio is defined as ``the ratio of the
+income share of the top 10 percent over that of the bottom 40 percent''
+(Basu \& Stiglitz, 2016, p.~xxvi), and is designed to capture inequality
+at the extremes of the income distribution. However, the Distribution
+dataset does not include the income share of the bottom 40 percent.
+Therefore, as a practical and intuitive alternative, inequality is
+measured by dividing the income share of the top 10 percent by that of
+the bottom 90 percent (i.e., 100\% minus the top 10\%).
+
+Using this measure, inequality will be visualized over time by
+presenting the mean and median values of all U.S. states. This
+visualization provides a broad overview of the national trend in
+inequality across the country, showing whether inequality is generally
+increasing or decreasing over time.
+
+Additionally, a second new variable groups states into four categories -
+Low, Medium Low, Medium High, and High - based on the percentage of the
+population with a bachelor's degree or higher, allowing inequality to be
+examined across sub-populations. This approach helps reveal whether
+states with a higher share of highly educated residents tend to have a
+higher or lower inequality.
+
+Finally, inequality will be visualized across the 50 states through a
+third new variable that shows the absolute change in inequality between
+1990 and 2000. Not all states experience inequality changes equally;
+some show significant increases while others remain stable. This
+variation can be attributed to factors such as local institutions, tax
+policies, or demographic shifts (Wei, 2015; Arcabic et al., 2021).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Inequality }\OtherTok{\textless{}{-}}\NormalTok{ Inequality }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Top10\_vs\_bottom90 =} \FunctionTok{round}\NormalTok{(Top10\_adj}\SpecialCharTok{/}\NormalTok{(}\DecValTok{100}\SpecialCharTok{{-}}\NormalTok{Top10\_adj), }\DecValTok{2}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\#\#3.2 Spatial variation of change in income inequality
-
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Make sure these packages are installed and loaded}
-\FunctionTok{library}\NormalTok{(dplyr)}
-\FunctionTok{library}\NormalTok{(tidyr)}
-\FunctionTok{library}\NormalTok{(maps)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'maps'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:purrr':
-## 
-##     map
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggplot2)}
-
-\NormalTok{diff\_data }\OtherTok{\textless{}{-}}\NormalTok{ Allmerged }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(Year }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\DecValTok{1990}\NormalTok{, }\DecValTok{2000}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{select}\NormalTok{(State, Year, Top10\_vs\_bottom90) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pivot\_wider}\NormalTok{(}\AttributeTok{names\_from =}\NormalTok{ Year, }\AttributeTok{values\_from =}\NormalTok{ Top10\_vs\_bottom90) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}
-    \CommentTok{\# Extract only the real state name before any dots or extra characters}
-    \AttributeTok{state\_lower =} \FunctionTok{tolower}\NormalTok{(}\FunctionTok{gsub}\NormalTok{(}\StringTok{"\^{}([a{-}zA{-}Z ]+).*"}\NormalTok{, }\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{1"}\NormalTok{, State)),}
-    \AttributeTok{state\_lower =} \FunctionTok{trimws}\NormalTok{(state\_lower),}
-    \AttributeTok{diff =} \StringTok{\textasciigrave{}}\AttributeTok{2000}\StringTok{\textasciigrave{}} \SpecialCharTok{{-}} \StringTok{\textasciigrave{}}\AttributeTok{1990}\StringTok{\textasciigrave{}}
-\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(state\_lower }\SpecialCharTok{!=} \StringTok{"district of columbia"}\NormalTok{)}
-
-\NormalTok{us\_states }\OtherTok{\textless{}{-}} \FunctionTok{map\_data}\NormalTok{(}\StringTok{"state"}\NormalTok{)}
-\NormalTok{map\_plot\_data }\OtherTok{\textless{}{-}} \FunctionTok{left\_join}\NormalTok{(us\_states, diff\_data, }\AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\StringTok{"region"} \OtherTok{=} \StringTok{"state\_lower"}\NormalTok{))}
-
-\CommentTok{\# Check: should now match!}
-\FunctionTok{print}\NormalTok{(}\FunctionTok{setdiff}\NormalTok{(}\FunctionTok{sort}\NormalTok{(}\FunctionTok{unique}\NormalTok{(us\_states}\SpecialCharTok{$}\NormalTok{region)), }\FunctionTok{sort}\NormalTok{(}\FunctionTok{unique}\NormalTok{(diff\_data}\SpecialCharTok{$}\NormalTok{state\_lower))))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "district of columbia"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{print}\NormalTok{(}\FunctionTok{setdiff}\NormalTok{(}\FunctionTok{sort}\NormalTok{(}\FunctionTok{unique}\NormalTok{(diff\_data}\SpecialCharTok{$}\NormalTok{state\_lower)), }\FunctionTok{sort}\NormalTok{(}\FunctionTok{unique}\NormalTok{(us\_states}\SpecialCharTok{$}\NormalTok{region))))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "alaska" "hawaii"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(map\_plot\_data, }\FunctionTok{aes}\NormalTok{(long, lat, }\AttributeTok{group =}\NormalTok{ group, }\AttributeTok{fill =}\NormalTok{ diff)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_polygon}\NormalTok{(}\AttributeTok{color =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{coord\_fixed}\NormalTok{(}\FloatTok{1.3}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_fill\_gradient2}\NormalTok{(}
-    \AttributeTok{low =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{mid =} \StringTok{"white"}\NormalTok{, }\AttributeTok{high =} \StringTok{"red"}\NormalTok{, }\AttributeTok{midpoint =} \DecValTok{0}\NormalTok{,}
-    \AttributeTok{name =} \StringTok{"Difference}\SpecialCharTok{\textbackslash{}n}\StringTok{(2000 {-} 1990)"}
-\NormalTok{  ) }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}
-    \AttributeTok{title =} \StringTok{"Change in Income Inequality by State"}\NormalTok{,}
-    \AttributeTok{subtitle =} \StringTok{"Top 10\% vs Bottom 90\% (2000 {-} 1990)"}
-\NormalTok{  ) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}
-    \AttributeTok{axis.text =} \FunctionTok{element\_blank}\NormalTok{(),}
-    \AttributeTok{axis.title =} \FunctionTok{element\_blank}\NormalTok{(),}
-    \AttributeTok{panel.grid =} \FunctionTok{element\_blank}\NormalTok{()}
-\NormalTok{  )}
-\end{Highlighting}
-\end{Shaded}
-
-\pandocbounded{\includegraphics[keepaspectratio]{Income_Inequality_files/figure-latex/unnamed-chunk-9-1.pdf}}
-
-\#\#3.3 Temporal visualization of income inequality
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df\_summary }\OtherTok{\textless{}{-}}\NormalTok{ Allmerged }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{Inequality }\OtherTok{\textless{}{-}}\NormalTok{ Inequality }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(Year) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{median\_ineq =} \FunctionTok{median}\NormalTok{(Top10\_vs\_bottom90),}
-            \AttributeTok{mean\_ineq =} \FunctionTok{mean}\NormalTok{(Top10\_vs\_bottom90))}
-
-\FunctionTok{ggplot}\NormalTok{(df\_summary, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Year)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ median\_ineq), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }
-            \AttributeTok{linewidth =} \FloatTok{1.2}\NormalTok{, }
-            \AttributeTok{lineend =} \StringTok{"round"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ mean\_ineq), }
-            \AttributeTok{color =} \StringTok{"red"}\NormalTok{,}
-            \AttributeTok{linewidth =} \FloatTok{1.2}\NormalTok{,}
-            \AttributeTok{lineend =} \StringTok{"round"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Income Inequality per year"}\NormalTok{, }
-       \AttributeTok{subtitle =} \StringTok{"Median (blue) vs Mean (red)"}\NormalTok{,}
-       \AttributeTok{x =} \StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Year"}\NormalTok{, }
-       \AttributeTok{y =} \StringTok{"Top 10\% / Bottom 90\% ratio}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{1990}\NormalTok{, }\DecValTok{2000}\NormalTok{), }\AttributeTok{breaks =} \DecValTok{1990}\SpecialCharTok{:}\DecValTok{2000}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.8}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.02}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{14}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{face =} \StringTok{"bold"}\NormalTok{),}
-    \AttributeTok{plot.subtitle =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\pandocbounded{\includegraphics[keepaspectratio]{Income_Inequality_files/figure-latex/unnamed-chunk-10-1.pdf}}
-
-\#\#3.4 To visualize income inequality across different percentages of
-bachelor's degree, we divide them into quartiles.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggplot2)}
-
-\CommentTok{\#Create quartile{-}based education groups per year}
-\NormalTok{Allmerged }\OtherTok{\textless{}{-}}\NormalTok{ Allmerged }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(Year) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Quartile =} \FunctionTok{ntile}\NormalTok{(Bachelor, }\DecValTok{4}\NormalTok{),}
-         \AttributeTok{Bachelor\_level =} \FunctionTok{case\_when}\NormalTok{(}
-\NormalTok{           Quartile }\SpecialCharTok{==} \DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Low"}\NormalTok{,}
-\NormalTok{           Quartile }\SpecialCharTok{==} \DecValTok{2} \SpecialCharTok{\textasciitilde{}} \StringTok{"Medium Low"}\NormalTok{,}
-\NormalTok{           Quartile }\SpecialCharTok{==} \DecValTok{3} \SpecialCharTok{\textasciitilde{}} \StringTok{"Medium High"}\NormalTok{,}
-\NormalTok{           Quartile }\SpecialCharTok{==} \DecValTok{4} \SpecialCharTok{\textasciitilde{}} \StringTok{"High"}
-\NormalTok{         ))}
-\NormalTok{Allmerged }\OtherTok{\textless{}{-}}\NormalTok{ Allmerged }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Quartile =} \ConstantTok{NULL}\NormalTok{)}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Quartile =} \FunctionTok{ntile}\NormalTok{(Bachelor, }\DecValTok{4}\NormalTok{), }\AttributeTok{Bachelor\_level =} \FunctionTok{case\_when}\NormalTok{(Quartile }\SpecialCharTok{==} \DecValTok{1} \SpecialCharTok{\textasciitilde{}} \StringTok{"Low"}\NormalTok{, Quartile }\SpecialCharTok{==} \DecValTok{2} \SpecialCharTok{\textasciitilde{}} \StringTok{"Medium Low"}\NormalTok{, Quartile }\SpecialCharTok{==} \DecValTok{3} \SpecialCharTok{\textasciitilde{}} \StringTok{"Medium High"}\NormalTok{,Quartile }\SpecialCharTok{==} \DecValTok{4} \SpecialCharTok{\textasciitilde{}} \StringTok{"High"}\NormalTok{))}
 
 \CommentTok{\# Make sure Education is a factor with the right order}
-\NormalTok{Allmerged}\SpecialCharTok{$}\NormalTok{Bachelor\_level }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
-\NormalTok{  Allmerged}\SpecialCharTok{$}\NormalTok{Bachelor\_level,}
-  \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\StringTok{"Medium Low"}\NormalTok{, }\StringTok{"Medium High"}\NormalTok{, }\StringTok{"High"}\NormalTok{)}
-\NormalTok{)}
-
-\CommentTok{\#We can use indexing or create new dataframes for 1990 and 2000 to create boxplots per year}
-\FunctionTok{library}\NormalTok{(ggplot2)}
-
-\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ Allmerged[Allmerged}\SpecialCharTok{$}\NormalTok{Year }\SpecialCharTok{==} \DecValTok{1990}\NormalTok{, ], }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Bachelor\_level, }\AttributeTok{y =}\NormalTok{ Top10\_vs\_bottom90)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}
-    \AttributeTok{x =} \StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Education Group (Based on Bachelor \% Quartiles)"}\NormalTok{,}
-    \AttributeTok{y =} \StringTok{"Income Inequality (Top 10\% vs Bottom 90\%)}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
-    \AttributeTok{title =} \StringTok{"Effect of Education Level on Income Inequality"}
-\NormalTok{  )}
+\NormalTok{Inequality}\SpecialCharTok{$}\NormalTok{Bachelor\_level }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{  Inequality}\SpecialCharTok{$}\NormalTok{Bachelor\_level,}
+  \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\StringTok{"Medium Low"}\NormalTok{, }\StringTok{"Medium High"}\NormalTok{, }\StringTok{"High"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{Income_Inequality_files/figure-latex/unnamed-chunk-11-1.pdf}}
+\subsection{3.3 Temporal Variation}\label{temporal-variation}
 
-\#\#3.5 Event analysis
+\pandocbounded{\includegraphics[keepaspectratio]{Income_Inequality_files/figure-latex/unnamed-chunk-13-1.pdf}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df\_summary }\OtherTok{\textless{}{-}}\NormalTok{ Allmerged }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(Year) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{median\_ineq =} \FunctionTok{median}\NormalTok{(Top10\_vs\_bottom90),}
-            \AttributeTok{mean\_ineq =} \FunctionTok{mean}\NormalTok{(Top10\_vs\_bottom90))}
+\subsection{3.4 Sub-population
+Variation}\label{sub-population-variation}
 
-\FunctionTok{ggplot}\NormalTok{(df\_summary, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Year)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ median\_ineq), }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }
-            \AttributeTok{linewidth =} \FloatTok{1.2}\NormalTok{, }
-            \AttributeTok{lineend =} \StringTok{"round"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ mean\_ineq), }
-            \AttributeTok{color =} \StringTok{"red"}\NormalTok{,}
-            \AttributeTok{linewidth =} \FloatTok{1.2}\NormalTok{,}
-            \AttributeTok{lineend =} \StringTok{"round"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Income Inequality per year"}\NormalTok{, }
-       \AttributeTok{subtitle =} \StringTok{"Median (blue) vs Mean (red)"}\NormalTok{,}
-       \AttributeTok{x =} \StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Year"}\NormalTok{, }
-       \AttributeTok{y =} \StringTok{"Top 10\% / Bottom 90\% ratio}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{1990}\NormalTok{, }\DecValTok{2000}\NormalTok{), }\AttributeTok{breaks =} \DecValTok{1990}\SpecialCharTok{:}\DecValTok{2000}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.8}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.02}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{14}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{face =} \StringTok{"bold"}\NormalTok{),}
-    \AttributeTok{plot.subtitle =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{1994}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{1995}\NormalTok{, }\AttributeTok{y =} \FloatTok{0.76}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{label =} \StringTok{"Introduction}\SpecialCharTok{\textbackslash{}n}\StringTok{of NAFTA"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\pandocbounded{\includegraphics[keepaspectratio]{Income_Inequality_files/figure-latex/unnamed-chunk-14-1.pdf}}
 
-\pandocbounded{\includegraphics[keepaspectratio]{Income_Inequality_files/figure-latex/unnamed-chunk-12-1.pdf}}
+\subsection{3.5 Spatial Variation}\label{spatial-variation}
 
-\#4 Discussion
+\begin{verbatim}
+## Warning: The `legend.text.align` argument of `theme()` is deprecated as of ggplot2
+## 3.5.0.
+## i Please use theme(legend.text = element_text(hjust)) instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+\end{verbatim}
 
-\#\#4.1 Discuss our findings
+\pandocbounded{\includegraphics[keepaspectratio]{Income_Inequality_files/figure-latex/unnamed-chunk-17-1.pdf}}
 
-\#5 Reproductibility
+\subsection{3.5 Event Analysis}\label{event-analysis}
 
-\#\#5.2 Reference list Pew Research Center. (2020, January 9). Trends in
-U.S. income and wealth inequality. Pew Research Center. Retrieved from
+\begin{verbatim}
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## i Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Income_Inequality_files/figure-latex/unnamed-chunk-18-1.pdf}}
+
+The temporal visualization shows that inequality rose significantly
+after 1994, which may be linked to the implementation of the North
+American Free Trade Agreement (NAFTA). NAFTA, established between the
+U.S., MExico and Canada came into effect in January 1994 with the
+objective of creating a trilateral trade bloc to increase economic
+integration, boost trade, and stimulate growth by removing trade
+barriers and import tariffs. As a result, exports and imports became
+cheaper, and a significant share of U.S. manufacturing was relocated to
+Mexico due to lower labor costs (SOURCE).
+
+NAFTA established the world's largest free trade zone, but not everyone
+benefited equally. Higher-income groups in the U.S. gained the most, as
+large corporations experienced increased profits that mainly flowed to
+shareholders and high-income individuals (This trend explains the rise
+in the mean income, while the median grew more slowly)(SOURCE).
+
+While the NAFTA boosted overall GDP, it disproportionately affected
+lower-income groups. The United States lost numerous manufacturing jobs
+(Estimated at 682,900 by 2010) as companies relocated production to
+Mexico to cut labor costs (Scott, 2011). This acceleration of
+outsourcing significantly impacted American manufacturing and
+low-skilled workers. Consequently, some workers saw their income
+stagnate or decline, whereas individuals in management and high-skill
+sectors experienced income growth (SOURCE). As a result, income
+inequality widened, further expanding the gap between the bottom 90
+percent and the top earners.
+
+However, it is important to recognize that the rise in income inequality
+cannot be attributed solely to NAFTA. Factors such as technological
+advancements, shifts in labor market policies and broader globalization
+have also played significant roles in driving this trend.
+
+\section{4 Discussion}\label{discussion}
+
+\subsection{4.1 Discussion of the
+findings}\label{discussion-of-the-findings}
+
+This project has shown that inequality in the US is structural growing
+and a more urgent social issue. The income share ratio that we
+constructed shows that there is an increase in inequality between 1990
+and 2000. This increase is visible in almost every US state. The largest
+increases occurred in Massachusetts, California, Arizona, and Nebraska.
+The changes in inequality may be linked to regional economic factors in
+specific areas. For example California and Massachusetts had a rapid
+growth in tech and finance industries during the 1990s, where highly
+skilled workers (often in the top 10\%) were paid significantly more
+than lower income groups. The analysis that can be made from our dataset
+is that the income inequality started rising more starting from the year
+1994. This year, the Nort American Free Trade Agreement (NAFTA) has been
+implemented. The goal of NAFTA was to stimulate trade and economic
+growth, but it this agreement also led to outsourcing to lower-wage
+countries. Because of this outsourcing, many low-skilled manufacturing
+job in the US were lost. While the lower class was struggling, high
+income groups were benefiting from rising corporate profits and stock
+value. Which is why the inequality started to rise significantly more.
+The subpopulation, based on the share of people with a bachelor's degree
+or higher, showed that states who have a higher education level, often
+tend to have a greater inequality. The connection between this relation
+is that highly educated workers have more access to better-paying jobs,
+which further widens the income gap. Our analysis shows that inequality
+is widespread but most prominent in states with higher education levels
+and following policy shifts such as NAFTA.
+
+\section{5 Reproductibility}\label{reproductibility}
+
+\subsection{5.1 Github Repository link}\label{github-repository-link}
+
+\subsection{5.2 Reference list}\label{reference-list}
+
+Pew Research Center. (2020, January 9). Trends in U.S. income and wealth
+inequality. Pew Research Center. Retrieved from
 \url{https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/}
 
 Denk, O., Hagemann, R., Lenain, P., \& Somma, V. (2013, May 27).
 Inequality and poverty in the United States: Public policies for
 inclusive growth (OECD Working Paper No.~1052). OECD. Retrieved from
 \url{https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html}
+
+Scott, R. E. (2011, 3 mei). Heading South: U.S.-Mexico trade and job
+displacement after NAFTA (Briefing Paper \#308). Economic Policy
+Institute.
+\url{http://www.epi.org/publications/entry/briefing_paper_308/}
 
 \end{document}
