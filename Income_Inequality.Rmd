@@ -1,7 +1,6 @@
 ---
 title: "Education and Inequality: A State-Level Analysis of the U.S. (1990–2000)"
-author: "Carlijn Calori (2860228), Leah Delikát (2813155), 
-Fadhil Dhafir (2847129), Sten Groen (2813781), Julia Koeleman, Anne Schrama (2812834), Marie-Louise Stevens (2814083), Sophia Zentgraf"
+author: "Carlijn Calori (2860228), Leah Delikát (2813155), Fadhil Dhafir (2847129), Sten Groen (2813781), Julia Koeleman, Anne Schrama (2812834), Marie-Louise Stevens (2814083), Sophia Zentgraf (2853242)"
 date: "`r Sys.Date()`"
 output: pdf_document
 ---
@@ -71,7 +70,7 @@ if (!file.exists(zipfile)) {
 unzip(zipfile, exdir = "datasets_income_inequality")
 ```
 
-```{r}
+```{r echo=TRUE}
 #Load the files
 Distribution <- read_excel("datasets_income_inequality/Frank_WID_2020.xls", sheet = 3)
 Education <- read_excel("datasets_income_inequality/tabn012.xls", col_types = c("text", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip","skip", "skip", "skip", "skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip", "skip"))
@@ -280,7 +279,7 @@ ggplot(map_plot_data, aes(long, lat, group = group, fill = diff)) +
     axis.text = element_blank(),
     axis.title = element_blank(),
     panel.grid = element_blank(),
-    legend.text.align = 0.6
+    legend.text = element_text(hjust = 0.6)
   )
 ```
 The spatial variation graph shows the change in income inequality between 1990 and 2000 across all U.S. states, measured by the Top10_vs_bottom90 ratio. Most states experienced an increase in inequality, though the magnitude of change varies. The most significant increases are observed in states such as Massachusetts, California, and Arizona, indicating that regional economic developments may have amplified income disparities. Conversely, several Midwestern and Southern states show smaller changes, and a few appear relatively stable or even slightly declining.
@@ -311,7 +310,7 @@ ggplot(df_summary, aes(x = Year)) +
   theme_minimal(base_size = 14) +
   theme(plot.title = element_text(hjust = 0.5, face = "bold"),
     plot.subtitle = element_text(hjust = 0.5)) +
-  geom_vline(xintercept = 1994, size = 1.2) +
+  geom_vline(xintercept = 1994, linewidth = 1.2) +
   annotate("text", x = 1995, y = 0.77, size = 4, label = "Introduction\nof NAFTA")
 
 ```
