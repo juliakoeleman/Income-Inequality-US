@@ -167,7 +167,11 @@ Inequality <- Inequality %>%
 ```{r}
 Inequality <- Inequality %>%
   group_by(Year) %>%
-  mutate(Quartile = ntile(Bachelor, 4), Bachelor_level = case_when(Quartile == 1 ~ "Low", Quartile == 2 ~ "Medium Low", Quartile == 3 ~ "Medium High",Quartile == 4 ~ "High"))
+  mutate(Quartile = ntile(Bachelor, 4), Bachelor_level = case_when(
+    Quartile == 1 ~ "Low", 
+    Quartile == 2 ~ "Medium Low", 
+    Quartile == 3 ~ "Medium High",
+    Quartile == 4 ~ "High"))
 
 # Make sure Education is a factor with the right order
 Inequality$Bachelor_level <- factor(
@@ -176,7 +180,6 @@ Inequality$Bachelor_level <- factor(
 ```
 
 ## 3.3 Temporal Variation
-
 ```{r echo=FALSE}
 df_summary <- Inequality %>%
   group_by(Year) %>%
@@ -202,11 +205,9 @@ ggplot(df_summary, aes(x = Year)) +
         plot.subtitle = element_text(hjust = 0.5))  
 
 ```
-
 The graph illustrates the development of income inequality in the United States from 1990 to 2000, using the ratio between the income share of the top 10 percent and the bottom 90 percent. Both the median (blue) and mean (red) values show a clear upward trend over time, with a notable acceleration after 1994. The increasing gap between mean and median also suggest that the highest earners experienced disproportionate income growth compared to the general population.
 
 ## 3.4 Sub-population Variation
-
 ```{r echo=FALSE}
 library(ggplot2)
 
@@ -229,13 +230,10 @@ ggplot(data = Inequality[Inequality$Year == 2000, ],
   )
 
 ```
-
 The box-and-whisker plot displays income inequality in the year 2000 across four groups of states, categorized by the percentage of the population with a bachelor's degree or higher. The results show a positive correlation: states with a higher level of educational attainment tend to exhibit greater income inequality. This suggests that while higher education leads to better-paying jobs, it also contributes to a wider income gap, as the earnings of highly educated individuals pull away from those with lower education levels.
 
-This means simply raising education levels may not reduce inequality. To close the gap, other measures, such as fair wages and better job opportunities for lower-educated workers, are also needed.
 
 ## 3.5 Spatial Variation
-
 ```{r include=FALSE}
 # Make sure these packages are installed and loaded
 library(maps)
@@ -285,13 +283,11 @@ ggplot(map_plot_data, aes(long, lat, group = group, fill = diff)) +
     legend.text.align = 0.6
   )
 ```
-
 The spatial variation graph shows the change in income inequality between 1990 and 2000 across all U.S. states, measured by the Top10_vs_bottom90 ratio. Most states experienced an increase in inequality, though the magnitude of change varies. The most significant increases are observed in states such as Massachusetts, California, and Arizona, indicating that regional economic developments may have amplified income disparities. Conversely, several Midwestern and Southern states show smaller changes, and a few appear relatively stable or even slightly declining.
 
 This map effectively highlights regional disparities, allowing for geographic patterns in inequality growth to become visible. However, the use of a continuous color gradient lacks categorical thresholds, making it harder to distinguish what constitutes a mild versus a substantial increase in inequality. For example, grouping values into low, medium, and high changes could make regional patterns more interpretable. Additionally adding regional labels or reference zones ("Northeast", "Southwest", etc) could further support spatial variation.
 
 ## 3.5 Event Analysis
-
 ```{r echo=FALSE}
 df_summary <- Inequality %>%
   group_by(Year) %>%
@@ -319,7 +315,6 @@ ggplot(df_summary, aes(x = Year)) +
   annotate("text", x = 1995, y = 0.77, size = 4, label = "Introduction\nof NAFTA")
 
 ```
-
 The temporal visualization shows that inequality rose significantly after 1994, coinciding with the implementation of the North American Free Trade Agreement (NAFTA). NAFTA, established between the U.S., Mexico and Canada, came into effect in January 1994, aiming to boost trade and economic integration by removing trade barriers and import tariffs (Floyd, 2025). As a result, exports and imports became cheaper, and a significant share of U.S. manufacturing was relocated to Mexico due to lower labor costs (Scott, 2011).
 
 While NAFTA established the world’s largest free trade zone, the benefits were uneven. Higher-income groups gained the most, as corporate profits increased and primarily flowed to shareholders and high-income individuals (This trend explains the rise in the mean income, while the median grew more slowly).
@@ -332,13 +327,13 @@ However, inequality cannot be contributed to NAFTA alone. Technological change, 
 
 ## 4.1 Discussion of the findings
 
-This project has shown that inequality in the US is structural growing and a more urgent social issue. The income share ratio that we constructed shows that there is an increase in inequality between 1990 and 2000. This increase is visible in almost every US state. The largest increases occurred in Massachusetts, California, Arizona, and Nebraska. The changes in inequality may be linked to regional economic factors in specific areas. For example California and Massachusetts had a rapid growth in tech and finance industries during the 1990s, where highly skilled workers (often in the top 10%) were paid significantly more than lower income groups.
+The analysis has shown that inequality in the US is structural growing and a more urgent social issue. By measuring inequality through the top 10% versus the bottom 90% ratio, we find a general increase across nearly all U.S states. The most significant increase occurred in Massachusetts, California, Arizona, and Nebraska. These changes may be linked to regional economic factors in specific areas. For example California and Massachusetts had a rapid growth in tech and finance industries during the 1990s, where highly skilled workers (often in the top 10%) were paid significantly more than lower income groups.
 
-The analysis that can be made from our dataset is that the income inequality started rising more starting from the year 1994. This year (NAFTA) was implemented. The goal of NAFTA was to stimulate trade and economic growth, but this agreement also led to outsourcing to lower-wage countries. Because of this outsourcing, many low-skilled manufacturing job in the US were lost. While the lower class was struggling, high income groups were benefiting from rising corporate profits and stock value. Which is why the inequality started to rise significantly more.
+The sharp increase in inequality after 1994 coincides with the implementation of NAFTA. NAFTA, as discussed earlier, led to job outsourcing that likely benefited higher earners while disadvantaging low-skilled workers.
 
-The sub-population analysis, based on the share of people with a bachelor’s degree or higher, showed that states who have a higher education level, often tend to have greater inequality. The connection between this relation is that highly educated workers have more access to better-paying jobs, which further widens the income gap.
+The sub-population analysis, based on the share of people with a bachelor’s degree or higher, showed that states who have a higher education level, often tend to have higher income inequality. Highly educated workers have more access to better-paying jobs, which further widens the income gap. These findings confirm previous research indicating that populations with higher levels of education are more unequal (Horowitz et al., 2020; Basu & Stiglitz, 2016). This means simply raising education levels may not reduce inequality. To close the gap, other measures, such as fair wages and better job opportunities for lower-educated workers, are also needed.
 
-Our analysis shows that inequality is widespread but most prominent in states with higher education levels and following policy shifts such as NAFTA.
+To conclude, our analysis has shown that income inequality is widespread in the United States. It is most prominent in states with higher levels of educational attainment and increased significantly following the implementation of NAFTA.
 
 # 5 Reproducibility
 
@@ -348,13 +343,13 @@ Our analysis shows that inequality is widespread but most prominent in states wi
 
 Arčabić, V., Kim, K. T., You, Y., & Lee, J. (2021). Century-long dynamics and convergence of income inequality among the US states. Economic Modelling, 101, 105526. <https://doi.org/10.1016/j.econmod.2021.105526>
 
-Basu, K., & Stiglitz, J. E. (Eds.). (2016). Inequality and Growth: Patterns and Policy Volume II: Regions and Regularities. Palgrave Macmillan. <https://doi.org/10.1057/9781137554598>
+Basu, K., & Stiglitz, J. E. (2016). Inequality and Growth: Patterns and Policy Volume II: Regions and Regularities. Palgrave Macmillan. <https://doi.org/10.1057/9781137554598>
 
 Denk, O., Hagemann, R. P., Lenain, P., Somma, V. (2013). Inequality and Poverty in the United States: Public Policies for Inclusive Growth. In *OECD Economics Department Working Papers* (No. 1052). <https://dx.doi.org/10.1787/5k46957cwv8q-en>
 
 Floyd, D. (2025). *How Did NAFTA Affect the Economies of Participating Countries?* Investopedia. <https://www.investopedia.com/articles/economics/08/north-american-free-trade-agreement.asp#:~:text=Cons%20of%20NAFTA%20Many%20jobs%20shifted%20from,suppress%20wages%20and%20opportunities%20for%20several%20parties>.
 
-Horowitz, J., Igielnik, R., Kochhar, R., & Pew Research Center. (2020b). *Most Americans Say There Is Too Much Economic Inequality in the U.S., but Fewer Than Half Call It a Top Priority*. <https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.09.20_economic-inequailty_FULL.pdf>
+Horowitz, J., Igielnik, R., Kochhar, R. (2020). *Most Americans Say There Is Too Much Economic Inequality in the U.S., but Fewer Than Half Call It a Top Priority*. <https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.09.20_economic-inequailty_FULL.pdf>
 
 International Monetary Fund. (2017). Fiscal monitor: tackling inequality. In *World Economic And Financial Surveys*.
 
