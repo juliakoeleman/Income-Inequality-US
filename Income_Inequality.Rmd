@@ -1,6 +1,6 @@
 ---
 title: "The Effect of Education Level on Income Inequality"
-author: "Names + Studentnumbers"
+author: "Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen, Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf"
 date: "`r Sys.Date()`"
 output: pdf_document
 ---
@@ -30,17 +30,20 @@ packageVersion("dplyr")
 
 #Title Page
 Carlijn Calori, Leah Delikát, Fadhil Dhafir, Sten Groen, Julia Koeleman, Anne Schrama, Marie-Louise Stevens, Sophia Zentgraf
+
 Tutorial: Group 1
+
 J.F. Fitzgerald
 
 #Part 1 - Identification of the Social Problem
 
 ##1.1 Describe the Social Problem
-Income inequality in the USA is a social problem because it limits equal opportunities, increases social tensions, and harms health and democracy.The Pew Research Center warns that the middle class is shrinking rapidly, while the rich grow richer.In addition, The OECD ranks the U.S. among the most unequal developed nations. These two studies emphasize the importance of this problem ABCDEF. 
+Income inequality is a serious social issue in the United States. Over the past few decades, the gap between the highest and lowest earners has grown a lot, leading to problems on social, economic, and political levels. This widening gap creates unequal opportunities, adds pressure to communities, and makes it harder for people to succeed in the job market. Education plays an important role in this situation. People with higher levels of education tend to earn more money than those with lower levels of education. But how straightforward is that relationship?
 
+Several well-known sources have pointed out that income inequality is a major concern. The Organisation for Economic Co-operation and Development (OECD) has stated in multiple reports that the U.S. has one of the highest levels of income inequality among developed countries. They also point out that this can slow down economic growth and limit social mobility. The Pew Research Center has also found that income gaps keep growing and that education is a key factor—people without higher education are falling further behind in the labor market. These sources show that income inequality, and the role education plays in it, is a long-term issue that needs real attention.
 
-https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/?
-https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html
+Even though this topic has been researched before, our project takes a closer look than many past studies. We focus on differences between U.S. states to see how the link between education and income changes from one region to another. By doing this, we can offer a more detailed and complete picture of income inequality. With this more in-depth analysis, we hope to find new insights that haven’t been explored in other research.
+
 
 #Part 2 - Data Sourcing
 
@@ -290,8 +293,10 @@ However, it is important to recognize that the rise in income inequality cannot 
 ##5.2 Reference list
 Pew Research Center. (2020, January 9). Trends in U.S. income and wealth inequality. Pew Research Center.
 Retrieved from https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality/
-  
-  Denk, O., Hagemann, R., Lenain, P., & Somma, V. (2013, May 27). Inequality and poverty in the United States: Public policies for inclusive growth (OECD Working Paper No. 1052). OECD.
+
+Denk, O. et al. (2013), “Inequality and Poverty in the United States: Public Policies for Inclusive Growth”, OECD Economics Department Working Papers, No. 1052, OECD Publishing, Paris, https://doi.org/10.1787/5k46957cwv8q-en
+
+Denk, O., Hagemann, R., Lenain, P., & Somma, V. (2013, May 27). Inequality and poverty in the United States: Public policies for inclusive growth (OECD Working Paper No. 1052). OECD.
 Retrieved from https://www.oecd.org/en/publications/inequality-and-poverty-in-the-united-states_5k46957cwv8q-en.html
 
 Scott, R. E. (2011, 3 mei). Heading South: U.S.-Mexico trade and job displacement after NAFTA (Briefing Paper #308). Economic Policy Institute. http://www.epi.org/publications/entry/briefing_paper_308/
