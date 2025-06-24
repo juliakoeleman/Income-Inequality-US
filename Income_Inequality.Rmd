@@ -1,14 +1,9 @@
 ---
-title: "Education and Inequality: A State-Level Analysis of the U.S. (1990–2000)"
+title: "The Effect of Education Level on Income Inequality in the United States (1990–2000)"
 author:  
-  - Carlijn Calori (2860228)
-  - Leah Delikát (2813155)
-  - Fadhil Dhafir (2847129)
-  - Sten Groen (2813781)
-  - Julia Koeleman (xxx)
-  - Anne Schrama (2812834)
-  - Marie-Louise Stevens (2814083)
-  - Sophia Zentgraf (2853242)
+  - Carlijn Calori (2860228), Leah Delikát (2813155), Fadhil Dhafir (2847129),
+  - Sten Groen (2813781), Julia Koeleman (xxx), Anne Schrama (2812834),
+  - Marie-Louise Stevens (2814083), Sophia Zentgraf (2853242)
 date: "`r Sys.Date()`"
 output: pdf_document
 ---
