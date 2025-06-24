@@ -339,12 +339,14 @@ Our analysis shows that inequality is widespread but most prominent in states wi
 
 Arčabić, V., Kim, K. T., You, Y., & Lee, J. (2021). Century-long dynamics and convergence of income inequality among the US states. Economic Modelling, 101, 105526. <https://doi.org/10.1016/j.econmod.2021.105526>
 
-Denk, O., Hagemann, R. P., Lenain, P., Somma, V. (2013). Inequality and Poverty in the United States: Public Policies for Inclusive Growth. In *OECD Economics Department Working Papers* (No. 1052). <https://dx.doi.org/10.1787/5k46957cwv8q-en>
-
-Horowitz, J., Igielnik, R., Kochhar, R., & Pew Research Center. (2020b). *Most Americans Say There Is Too Much Economic Inequality in the U.S., but Fewer Than Half Call It a Top Priority*. <https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.09.20_economic-inequailty_FULL.pdf>
-
 Basu, K., & Stiglitz, J. E. (Eds.). (2016). Inequality and Growth: Patterns and Policy Volume II: Regions and Regularities. Palgrave Macmillan. <https://doi.org/10.1057/9781137554598>
+
+Denk, O., Hagemann, R. P., Lenain, P., Somma, V. (2013). Inequality and Poverty in the United States: Public Policies for Inclusive Growth. In *OECD Economics Department Working Papers* (No. 1052). <https://dx.doi.org/10.1787/5k46957cwv8q-en>
+
+Horowitz, J., Igielnik, R., Kochhar, R., & Pew Research Center. (2020b). *Most Americans Say There Is Too Much Economic Inequality in the U.S., but Fewer Than Half Call It a Top Priority*. <https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.09.20_economic-inequailty_FULL.pdf>
+
+Scott, R. E. (2011). Heading South: U.S.-Mexico trade and job displacement after NAFTA (Briefing Paper #308). Economic Policy Institute.
 
 Wei, Y. D. (2015). Spatiality of regional inequality. Applied Geography, 61, 1–10. https://dx.doi.org/10.1016/j.apgeog.2015.03.013
 
-Scott, R. E. (2011). Heading South: U.S.-Mexico trade and job displacement after NAFTA (Briefing Paper #308). Economic Policy Institute.
+
